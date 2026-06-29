@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MYXDA">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c5cff"/>
+      <stop offset="1" stop-color="#19e3d6"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="#0a0a14"/>
+  <rect x="2.75" y="2.75" width="58.5" height="58.5" rx="14.25" fill="none" stroke="url(#g)" stroke-width="1.5" opacity="0.7"/>
+  <g filter="url(#glow)">
+    <rect x="22" y="13" width="20" height="38" rx="5" fill="none" stroke="url(#g)" stroke-width="2.6"/>
+    <line x1="28" y1="46" x2="36" y2="46" stroke="url(#g)" stroke-width="2.6" stroke-linecap="round"/>
+    <text x="32" y="35" font-family="monospace" font-size="15" font-weight="700" fill="url(#g)" text-anchor="middle">{ }</text>
+  </g>
+</svg>

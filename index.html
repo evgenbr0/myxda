@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+  <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MYXDA — всё о мобильной разработке: iOS, Android, кроссплатформа</title>
+  <meta name="description" content="Журнал-энциклопедия о мобильной разработке: платформы iOS и Android, языки и стек (Swift, Kotlin, Flutter), этапы создания приложений, сравнение платформ, статьи и FAQ для начинающих и практикующих разработчиков." />
+  <meta name="theme-color" content="#0a0a14" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="MYXDA — всё о мобильной разработке" />
+  <meta property="og:description" content="Платформы, языки, инструменты и этапы создания мобильных приложений. Познавательно и по делу." />
+  <meta property="og:locale" content="ru_RU" />
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MYXDA",
+    "url": "https://myxda.ru",
+    "description": "Информационный журнал-энциклопедия о мобильной разработке: iOS, Android, кроссплатформенные технологии, языки, инструменты и этапы создания приложений.",
+    "inLanguage": "ru-RU",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Редакция MYXDA",
+      "email": "ХХХХХ",
+      "telephone": "ХХХХХ",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ХХХХХ",
+        "addressLocality": "ХХХХХ",
+        "addressCountry": "RU"
+      }
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <!-- ===== Header ===== -->
+  <header class="hdr" id="hdr">
+    <div class="wrap hdr__in">
+      <a class="logo" href="#hero" aria-label="MYXDA — на главную">
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="url(#lg)" stroke-width="1.6"/>
+            <text x="12" y="14.5" font-family="monospace" font-size="7" font-weight="700" fill="url(#lg)" text-anchor="middle">{}</text>
+            <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#19e3d6"/></linearGradient></defs>
+          </svg>
+        </span>
+        <span class="logo__txt">MYXDA<small>mobile&nbsp;dev</small></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <a class="nav__link" href="#platforms">Платформы</a>
+        <a class="nav__link" href="#stack">Стек</a>
+        <a class="nav__link" href="#dirs">Направления</a>
+        <a class="nav__link" href="#stages">Этапы</a>
+        <a class="nav__link" href="#versus">iOS vs Android</a>
+        <a class="nav__link" href="#articles">Статьи</a>
+        <a class="nav__link" href="#faq">FAQ</a>
+        <a class="btn btn--primary nav__cta" href="#contact">Связаться</a>
+      </nav>
+
+      <div class="hdr__actions">
+        <a class="btn btn--primary hdr__cta" href="#contact">Связаться с редакцией</a>
+        <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="hero">
+      <span class="hero__blob hero__blob--1" aria-hidden="true"></span>
+      <span class="hero__blob hero__blob--2" aria-hidden="true"></span>
+      <div class="wrap hero__in">
+        <div class="hero__main reveal">
+          <span class="tag"><span class="tag__dot" aria-hidden="true"></span> Журнал о мобильной разработке</span>
+          <h1 class="hero__title">Всё о <span class="grad-text">мобильной разработке</span></h1>
+          <p class="hero__lead">
+            Энциклопедия для тех, кто создаёт приложения: платформы и языки, инструменты и стек,
+            этапы проекта и публикация в сторах. Объясняем сложное простым языком — без воды и продаж.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--primary btn--lg" href="#articles">Читать материалы</a>
+            <a class="btn btn--ghost btn--lg" href="#platforms">С чего начать</a>
+          </div>
+          <ul class="hero__facts">
+            <li><b>3</b><span>платформы</span></li>
+            <li><b>8+</b><span>технологий в стеке</span></li>
+            <li><b>6</b><span>этапов проекта</span></li>
+          </ul>
+        </div>
+
+        <div class="hero__phone reveal" aria-hidden="true">
+          <div class="phone">
+            <div class="phone__screen">
+              <div class="ui-bar ui-bar--accent"></div>
+              <div class="ui-bar ui-bar--w85"></div>
+              <div class="ui-bar ui-bar--w70"></div>
+              <div class="ui-card">
+                <pre class="ui-code"><span class="k">func</span> launch() {
+  <span class="k">let</span> app = <span class="s">"MYXDA"</span>
+  render(app)
+}</pre>
+              </div>
+              <div class="ui-bar ui-bar--w45"></div>
+              <div class="ui-chips">
+                <span class="ui-chip">Swift</span>
+                <span class="ui-chip">Kotlin</span>
+                <span class="ui-chip">Flutter</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Платформы ===== -->
+    <section class="sec" id="platforms">
+      <div class="wrap">
+        <header class="head reveal">
+          <span class="eyebrow">// Платформы</span>
+          <h2 class="head__title">Где живут мобильные приложения</h2>
+          <p class="head__sub">Три большие дороги в мобильной разработке. У каждой свои инструменты, ограничения и сильные стороны.</p>
+        </header>
+
+        <div class="plat">
+          <article class="plat__card glass reveal">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span>
+            <h3>iOS</h3>
+            <p>Экосистема Apple: iPhone и iPad. Высокие требования к качеству, единый дизайн-язык и платёжеспособная аудитория. Разработка на Swift и SwiftUI в Xcode.</p>
+            <span class="plat__tag mono">Swift · SwiftUI · Xcode</span>
+          </article>
+          <article class="plat__card glass reveal">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10a5 5 0 0 1 10 0v7H7z"/><path d="M7 17v2M17 17v2M9 6 8 4M15 6l1-2"/><circle cx="10" cy="13" r=".4" fill="currentColor"/><circle cx="14" cy="13" r=".4" fill="currentColor"/></svg></span>
+            <h3>Android</h3>
+            <p>Самая массовая платформа мира: тысячи устройств и производителей. Гибкость и охват, но фрагментация экранов и версий. Языки Kotlin и Java, инструмент Android Studio.</p>
+            <span class="plat__tag mono">Kotlin · Compose · Studio</span>
+          </article>
+          <article class="plat__card glass reveal">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="11" height="14" rx="2"/><rect x="14" y="9" width="7" height="12" rx="2"/></svg></span>
+            <h3>Кроссплатформа</h3>
+            <p>Один код — две платформы сразу. Экономит время и бюджет, удобно для стартапов и MVP. Популярные решения: Flutter, React Native и Kotlin Multiplatform.</p>
+            <span class="plat__tag mono">Flutter · RN · KMP</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Стек ===== -->
+    <section class="sec" id="stack">
+      <div class="wrap">
+        <header class="head reveal">
+          <span class="eyebrow eyebrow--v">// Технологии</span>
+          <h2 class="head__title">Языки, фреймворки и инструменты</h2>
+          <p class="head__sub">Стек, на котором сегодня пишут мобильные приложения. Знакомство с этими названиями — хорошая отправная точка.</p>
+        </header>
+
+        <div class="stack reveal">
+          <span class="chip"><span class="chip__dot" aria-hidden="true"></span>Swift</span>
+          <span class="chip"><span class="chip__dot" aria-hidden="true"></span>SwiftUI</span>
+          <span class="chip"><span class="chip__dot" aria-hidden="true"></span>Kotlin</span>
+          <span class="chip"><span class="chip__dot" aria-hidden="true"></span>Jetpack Compose</span>
+          <span class="chip"><span class="chip__dot" aria-hidden="true"></span>Flutter</span>
+          <span class="chip"><span class="chip__dot" aria-hidden="true"></span>Dart</span>
+          <span class="chip"><span class="chip__dot" aria-hidden="true"></span>React Native</span>
+          <span class="chip"><span class="chip__dot" aria-hidden="true"></span>Kotlin Multiplatform</span>
+          <span class="chip"><span class="chip__dot" aria-hidden="true"></span>Java</span>
+          <span class="chip"><span class="chip__dot" aria-hidden="true"></span>Objective-C</span>
+          <span class="chip"><span class="chip__dot" aria-hidden="true"></span>Xcode</span>
+          <span class="chip"><span class="chip__dot" aria-hidden="true"></span>Android Studio</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Направления ===== -->
+    <section class="sec" id="dirs">
+      <div class="wrap">
+        <header class="head reveal">
+          <span class="eyebrow">// Направления</span>
+          <h2 class="head__title">Из чего складывается мобильный проект</h2>
+          <p class="head__sub">Над приложением работает целая команда. Вот основные направления, которые встречаются почти в каждом проекте.</p>
+        </header>
+
+        <div class="dirs">
+          <article class="dir glass reveal">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m8 9 3 3-3 3M13 15h3"/><rect x="3" y="4" width="18" height="16" rx="2"/></svg></span>
+            <h3>Нативная разработка</h3>
+            <p>Приложения на «родных» инструментах платформы. Максимальная производительность и доступ ко всем возможностям устройства.</p>
+          </article>
+          <article class="dir glass reveal">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h10M4 12h16M4 17h7"/><circle cx="18" cy="7" r="2.5"/></svg></span>
+            <h3>Кроссплатформа</h3>
+            <p>Общая кодовая база для iOS и Android. Быстрый старт и единая логика при сохранении достойного нативного вида.</p>
+          </article>
+          <article class="dir glass reveal">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+            <h3>Backend для мобильных</h3>
+            <p>Серверная часть, API и базы данных, авторизация, синхронизация и пуш-уведомления — всё, что работает «за кадром».</p>
+          </article>
+          <article class="dir glass reveal">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M8 3v6"/><circle cx="15" cy="15" r="2.5"/></svg></span>
+            <h3>UI/UX-дизайн</h3>
+            <p>Логика экранов и приятный интерфейс. Сценарии, прототипы и визуальный стиль, по которым удобно пользоваться приложением.</p>
+          </article>
+          <article class="dir glass reveal">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11l2 2 4-4"/><path d="M5 7l7-4 7 4v6c0 4-3 7-7 8-4-1-7-4-7-8z"/></svg></span>
+            <h3>Тестирование (QA)</h3>
+            <p>Поиск ошибок до того, как их найдут пользователи. Ручные и автоматические тесты, проверка на разных устройствах.</p>
+          </article>
+          <article class="dir glass reveal">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M5 19h14"/></svg></span>
+            <h3>Публикация в сторах</h3>
+            <p>Подготовка релиза, иконки и описания, прохождение модерации App Store и Google Play, обновления и аналитика установок.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Этапы ===== -->
+    <section class="sec" id="stages">
+      <div class="wrap">
+        <header class="head reveal">
+          <span class="eyebrow eyebrow--v">// Жизненный цикл</span>
+          <h2 class="head__title">Этапы создания приложения</h2>
+          <p class="head__sub">Путь от идеи до магазина приложений выглядит примерно одинаково — независимо от платформы и масштаба проекта.</p>
+        </header>
+
+        <div class="steps">
+          <article class="step glass reveal"><span class="step__n">01</span><h3>Идея и аналитика</h3><p>Формулируем задачу, изучаем аудиторию и конкурентов, описываем требования и составляем техническое задание.</p></article>
+          <article class="step glass reveal"><span class="step__n">02</span><h3>Дизайн</h3><p>Прорабатываем сценарии, рисуем прототипы и макеты экранов, собираем дизайн-систему и интерактивный прототип.</p></article>
+          <article class="step glass reveal"><span class="step__n">03</span><h3>Разработка</h3><p>Программируем интерфейс и логику, подключаем серверную часть и внешние сервисы, собираем приложение по итерациям.</p></article>
+          <article class="step glass reveal"><span class="step__n">04</span><h3>Тестирование</h3><p>Проверяем функции и сценарии на разных устройствах, ловим баги, контролируем производительность и стабильность.</p></article>
+          <article class="step glass reveal"><span class="step__n">05</span><h3>Релиз</h3><p>Готовим сборку, оформляем карточку в сторе, проходим модерацию App Store и Google Play и выпускаем приложение.</p></article>
+          <article class="step glass reveal"><span class="step__n">06</span><h3>Поддержка</h3><p>Выпускаем обновления, исправляем ошибки, развиваем функциональность и следим за метриками и отзывами пользователей.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== iOS vs Android ===== -->
+    <section class="sec" id="versus">
+      <div class="wrap">
+        <header class="head reveal">
+          <span class="eyebrow">// Сравнение</span>
+          <h2 class="head__title">iOS против Android</h2>
+          <p class="head__sub">Две главные платформы решают одни задачи по-разному. Коротко о ключевых отличиях для тех, кто выбирает, с чего начать.</p>
+        </header>
+
+        <div class="versus">
+          <article class="vs-col vs-col--ios glass reveal">
+            <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span>iOS</h3>
+            <dl>
+              <div class="vs-row"><dt>Язык</dt><dd>Swift, Objective-C</dd></div>
+              <div class="vs-row"><dt>IDE</dt><dd>Xcode (macOS)</dd></div>
+              <div class="vs-row"><dt>Магазин</dt><dd>App Store</dd></div>
+              <div class="vs-row"><dt>Аудитория</dt><dd>Меньше, платёжеспособнее</dd></div>
+              <div class="vs-row"><dt>Монетизация</dt><dd>Выше доход с пользователя</dd></div>
+              <div class="vs-row"><dt>Устройства</dt><dd>Ограниченный набор</dd></div>
+            </dl>
+          </article>
+          <article class="vs-col vs-col--droid glass reveal">
+            <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10a5 5 0 0 1 10 0v7H7z"/><path d="M7 17v2M17 17v2M9 6 8 4M15 6l1-2"/></svg></span>Android</h3>
+            <dl>
+              <div class="vs-row"><dt>Язык</dt><dd>Kotlin, Java</dd></div>
+              <div class="vs-row"><dt>IDE</dt><dd>Android Studio (любая ОС)</dd></div>
+              <div class="vs-row"><dt>Магазин</dt><dd>Google Play и др.</dd></div>
+              <div class="vs-row"><dt>Аудитория</dt><dd>Огромный мировой охват</dd></div>
+              <div class="vs-row"><dt>Монетизация</dt><dd>Объём за счёт массовости</dd></div>
+              <div class="vs-row"><dt>Устройства</dt><dd>Тысячи моделей</dd></div>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Статьи (фильтр по тегам) ===== -->
+    <section class="sec" id="articles">
+      <div class="wrap">
+        <header class="head reveal">
+          <span class="eyebrow eyebrow--v">// Материалы</span>
+          <h2 class="head__title">Статьи и разборы</h2>
+          <p class="head__sub">Познавательные материалы для начинающих и практиков. Выберите тему, чтобы отфильтровать подборку.</p>
+        </header>
+
+        <div class="filter reveal" role="group" aria-label="Фильтр статей по темам">
+          <button class="filter__tab is-active" data-cat="all" aria-pressed="true">Все</button>
+          <button class="filter__tab" data-cat="ios" aria-pressed="false">iOS</button>
+          <button class="filter__tab" data-cat="android" aria-pressed="false">Android</button>
+          <button class="filter__tab" data-cat="cross" aria-pressed="false">Кроссплатформа</button>
+          <button class="filter__tab" data-cat="career" aria-pressed="false">Карьера</button>
+        </div>
+        <p class="visually-hidden" id="artStatus" role="status" aria-live="polite"></p>
+
+        <div class="arts">
+          <article class="art glass reveal" data-cat="career">
+            <div class="art__cover art__cover--v" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h12M3 17h8"/><circle cx="19" cy="15" r="3"/></svg></div>
+            <div class="art__body">
+              <div class="art__meta"><span class="art__cat">Карьера</span><span>·</span><span>7 мин</span></div>
+              <h3>С чего начать обучение мобильной разработке</h3>
+              <p>Как выбрать первую платформу, не утонуть в названиях и собрать понятный план обучения с нуля до первого приложения.</p>
+              <a class="art__more mono" href="#contact">Читать →</a>
+            </div>
+          </article>
+
+          <article class="art glass reveal" data-cat="ios">
+            <div class="art__cover art__cover--v" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+            <div class="art__body">
+              <div class="art__meta"><span class="art__cat">iOS</span><span>·</span><span>9 мин</span></div>
+              <h3>SwiftUI простыми словами: как устроены экраны</h3>
+              <p>Декларативный подход Apple на пальцах: что такое View, состояние и почему интерфейс «сам» перерисовывается.</p>
+              <a class="art__more mono" href="#contact">Читать →</a>
+            </div>
+          </article>
+
+          <article class="art glass reveal" data-cat="android">
+            <div class="art__cover art__cover--c" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10a5 5 0 0 1 10 0v7H7z"/><path d="M9 6 8 4M15 6l1-2"/></svg></div>
+            <div class="art__body">
+              <div class="art__meta"><span class="art__cat">Android</span><span>·</span><span>8 мин</span></div>
+              <h3>Kotlin и Jetpack Compose: современный Android</h3>
+              <p>Почему Kotlin вытеснил Java и как Compose меняет привычный подход к вёрстке экранов на Android.</p>
+              <a class="art__more mono" href="#contact">Читать →</a>
+            </div>
+          </article>
+
+          <article class="art glass reveal" data-cat="cross">
+            <div class="art__cover art__cover--c" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="11" height="14" rx="2"/><rect x="14" y="9" width="7" height="12" rx="2"/></svg></div>
+            <div class="art__body">
+              <div class="art__meta"><span class="art__cat">Кроссплатформа</span><span>·</span><span>10 мин</span></div>
+              <h3>Flutter или React Native: что выбрать в 2026</h3>
+              <p>Сильные и слабые стороны двух главных кроссплатформенных фреймворков и в каких проектах каждый уместнее.</p>
+              <a class="art__more mono" href="#contact">Читать →</a>
+            </div>
+          </article>
+
+          <article class="art glass reveal" data-cat="cross">
+            <div class="art__cover" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 6 4 12l4 6M16 6l4 6-4 6M14 4l-4 16"/></svg></div>
+            <div class="art__body">
+              <div class="art__meta"><span class="art__cat">Кроссплатформа</span><span>·</span><span>6 мин</span></div>
+              <h3>Kotlin Multiplatform: один код, две платформы</h3>
+              <p>Как делить бизнес-логику между iOS и Android, оставляя нативным только интерфейс, и кому это реально нужно.</p>
+              <a class="art__more mono" href="#contact">Читать →</a>
+            </div>
+          </article>
+
+          <article class="art glass reveal" data-cat="career">
+            <div class="art__cover" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V5M20 19V5M4 12h16"/><circle cx="9" cy="9" r="2"/><circle cx="15" cy="15" r="2"/></svg></div>
+            <div class="art__body">
+              <div class="art__meta"><span class="art__cat">Карьера</span><span>·</span><span>5 мин</span></div>
+              <h3>Сколько стоит и сколько длится разработка приложения</h3>
+              <p>От чего зависят сроки и бюджет: сложность, платформы, дизайн и поддержка. Ориентиры без точных цифр.</p>
+              <a class="art__more mono" href="#contact">Читать →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="sec" id="faq">
+      <div class="wrap">
+        <header class="head head--center reveal">
+          <span class="eyebrow">// Вопросы</span>
+          <h2 class="head__title">Частые вопросы о мобильной разработке</h2>
+          <p class="head__sub">Коротко отвечаем на то, что чаще всего спрашивают новички и заказчики приложений.</p>
+        </header>
+
+        <div class="faq">
+          <details class="faq__item glass reveal" open>
+            <summary>Нативная разработка или кроссплатформа — что лучше?<span class="faq__sign" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>Однозначно «лучшего» нет. Нативная разработка даёт максимум производительности и доступа к возможностям устройства, но требует две отдельные команды. Кроссплатформа экономит время и бюджет за счёт общего кода — это удобно для стартапов и MVP. Выбор зависит от задач, сроков и требований к интерфейсу.</p></div>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>Сколько времени занимает разработка приложения?<span class="faq__sign" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>В среднем простое приложение делают за несколько недель, средний проект — за 3–6 месяцев, а крупный продукт может развиваться годами. Сроки сильно зависят от сложности логики, количества экранов, дизайна, серверной части и числа платформ.</p></div>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>Сколько стоит создать приложение?<span class="faq__sign" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>Стоимость складывается из объёма работ дизайна, разработки, тестирования и поддержки. На цену влияют число платформ, интеграции с внешними сервисами и сложность интерфейса. Точную сумму всегда считают под конкретное техническое задание, а не «в среднем».</p></div>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>С какого языка начать обучение?<span class="faq__sign" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>Если интересен мир Apple — учите Swift и SwiftUI. Тянет к самой массовой платформе — начните с Kotlin под Android. Хочется сразу две платформы и быстрый результат — посмотрите на Flutter с языком Dart. Главное — выбрать одно направление и довести первый проект до конца.</p></div>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>Нужен ли Mac, чтобы делать приложения для iOS?<span class="faq__sign" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>Да, для полноценной разработки и сборки под iOS нужен компьютер на macOS с установленным Xcode. Под Android таких ограничений нет — Android Studio работает на Windows, macOS и Linux.</p></div>
+          </details>
+          <details class="faq__item glass reveal">
+            <summary>Что такое публикация в сторе и зачем модерация?<span class="faq__sign" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>Чтобы приложение появилось в App Store или Google Play, его нужно собрать в релизную сборку, оформить карточку (иконка, скриншоты, описание) и пройти проверку магазина. Модерация следит за безопасностью, правилами платформы и качеством — это нормальный обязательный этап перед запуском.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Контакты / обратная связь ===== -->
+    <section class="sec" id="contact">
+      <div class="wrap">
+        <header class="head head--center reveal">
+          <span class="eyebrow eyebrow--v">// Обратная связь</span>
+          <h2 class="head__title">Остались вопросы?</h2>
+          <p class="head__sub">Напишите редакции: предложите тему, задайте вопрос по статье или просто поделитесь мнением.</p>
+        </header>
+
+        <div class="contact">
+          <div class="contact__info glass reveal">
+            <h3>Редакция MYXDA</h3>
+            <p class="contact__sub">Мы независимый информационный проект о мобильной разработке. Отвечаем на письма и читаем предложения тем.</p>
+            <ul class="contact__list">
+              <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><b>E-mail</b><a href="mailto:ХХХХХ">ХХХХХ</a></div></li>
+              <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3.5c0-.6.4-1 1-1H7c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1l-2.2 2.7z"/></svg></span><div><b>Телефон</b><a href="tel:ХХХХХ">ХХХХХ</a></div></li>
+              <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5Z"/></svg></span><div><b>Мессенджеры</b><span>Telegram: ХХХХХ</span></div></li>
+              <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><b>Адрес редакции</b><span>ХХХХХ</span></div></li>
+              <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h11l2 4h3v4h-2M4 7v8h2"/><circle cx="8" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></span><div><b>Реквизиты</b><span>ИНН / ОГРН: ХХХХХ</span></div></li>
+            </ul>
+          </div>
+
+          <form class="form glass reveal" id="contactForm" novalidate>
+            <div class="grid2">
+              <label class="field field--full">
+                <span class="field__label">Имя <i>*</i></span>
+                <input class="field__input" type="text" name="name" placeholder="Как к вам обращаться" autocomplete="name" aria-describedby="cf-name-error" required />
+                <span class="field__error" id="cf-name-error" role="alert">Укажите имя</span>
+              </label>
+              <label class="field field--full">
+                <span class="field__label">E-mail <i>*</i></span>
+                <input class="field__input" type="email" name="email" placeholder="you@example.com" autocomplete="email" aria-describedby="cf-email-error" required />
+                <span class="field__error" id="cf-email-error" role="alert">Укажите корректный e-mail</span>
+              </label>
+              <label class="field field--full">
+                <span class="field__label">Сообщение <i>*</i></span>
+                <textarea class="field__input" name="message" rows="4" placeholder="Ваш вопрос, тема статьи или предложение" aria-describedby="cf-msg-error" required></textarea>
+                <span class="field__error" id="cf-msg-error" role="alert">Напишите сообщение (минимум 5 символов)</span>
+              </label>
+            </div>
+            <label class="consent">
+              <input type="checkbox" name="consent" required />
+              <span>Даю согласие на обработку персональных данных и принимаю условия обработки</span>
+            </label>
+            <button class="btn btn--primary btn--lg btn--block" type="submit">Отправить сообщение</button>
+            <p class="form__note">Поля со <i>*</i> обязательны. Это демонстрационная форма — данные никуда не отправляются.</p>
+
+            <div class="form-ok" id="formSuccess" role="status" aria-live="polite" hidden>
+              <svg class="form-ok__ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+              <h3>Сообщение отправлено!</h3>
+              <p>Спасибо! Редакция получила ваше письмо и ответит при необходимости.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <div class="foot__brand">
+        <a class="logo" href="#hero" aria-label="MYXDA">
+          <span class="logo__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="url(#lg2)" stroke-width="1.6"/>
+              <text x="12" y="14.5" font-family="monospace" font-size="7" font-weight="700" fill="url(#lg2)" text-anchor="middle">{}</text>
+              <defs><linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#19e3d6"/></linearGradient></defs>
+            </svg>
+          </span>
+          <span class="logo__txt">MYXDA<small>mobile&nbsp;dev</small></span>
+        </a>
+        <p class="foot__about">Информационный журнал-энциклопедия о мобильной разработке. Платформы, языки, инструменты и этапы создания приложений — простым языком.</p>
+      </div>
+      <nav class="foot__col" aria-label="Разделы">
+        <h4>Разделы</h4>
+        <a href="#platforms">Платформы</a>
+        <a href="#stack">Технологии</a>
+        <a href="#dirs">Направления</a>
+        <a href="#stages">Этапы</a>
+      </nav>
+      <nav class="foot__col" aria-label="Материалы">
+        <h4>Материалы</h4>
+        <a href="#versus">iOS vs Android</a>
+        <a href="#articles">Статьи</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Связаться</a>
+      </nav>
+      <div class="foot__col foot__contacts">
+        <h4>Контакты</h4>
+        <p><a href="mailto:ХХХХХ">ХХХХХ</a></p>
+        <p><a href="tel:ХХХХХ">ХХХХХ</a></p>
+        <p>Telegram: ХХХХХ</p>
+        <p>Адрес: ХХХХХ</p>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <div class="wrap foot__bottom-in">
+        <span>© <span id="year">2026</span> MYXDA. Информационный проект о мобильной разработке.</span>
+        <span>Все контактные данные на сайте — заглушки (ХХХХХ).</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="totop" id="toTop" aria-label="Наверх" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+  </button>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
