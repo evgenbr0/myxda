@@ -396,7 +396,12 @@ textarea.field__input { resize: vertical; min-height: 110px; }
    ============================================================ */
 @media (max-width: 1024px) {
   .nav {
-    position: fixed; inset: 0 0 0 auto; width: min(360px, 84vw); flex-direction: column; align-items: stretch;
+    /* height в vh/dvh, а не bottom:0 — у .hdr есть backdrop-filter, из-за чего
+       шапка становится containing block для position:fixed потомков, и inset:…0…
+       схлопывал меню до высоты шапки (кликался только первый пункт). */
+    position: fixed; top: 0; right: 0; left: auto;
+    height: 100vh; height: 100dvh;
+    width: min(360px, 84vw); flex-direction: column; align-items: stretch;
     gap: .3rem; margin: 0; padding: 6rem 1.5rem 2rem; z-index: 99;
     background: rgba(12,13,28,.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border-left: 1px solid var(--glass-bd2);
