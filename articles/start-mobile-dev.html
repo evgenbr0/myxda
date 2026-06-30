@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+  <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>С чего начать обучение мобильной разработке — MYXDA</title>
+  <meta name="description" content="Пошаговый путь новичка в мобильной разработке: как выбрать платформу, освоить язык и среду, что учить из базы, какой pet-проект собрать первым и каких ошибок избежать." />
+  <meta name="theme-color" content="#0a0a14" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="С чего начать обучение мобильной разработке" />
+  <meta property="og:description" content="Пошаговый путь новичка в мобильной разработке: как выбрать платформу, освоить язык и среду, что учить из базы, какой pet-проект собрать первым и каких ошибок избежать." />
+  <meta property="og:locale" content="ru_RU" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/article.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"С чего начать обучение мобильной разработке","description":"Пошаговый путь новичка в мобильной разработке: как выбрать платформу, освоить язык и среду, что учить из базы, какой pet-проект собрать первым и каких ошибок избежать.","inLanguage":"ru-RU","author":{"@type":"Organization","name":"Редакция MYXDA"},"publisher":{"@type":"Organization","name":"MYXDA","email":"ХХХХХ","telephone":"ХХХХХ"},"datePublished":"2026-02-01"}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="hdr" id="hdr">
+    <div class="wrap hdr__in">
+      <a class="logo" href="../index.html" aria-label="MYXDA — на главную">
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="url(#lg)" stroke-width="1.6"/>
+            <text x="12" y="14.5" font-family="monospace" font-size="7" font-weight="700" fill="url(#lg)" text-anchor="middle">{}</text>
+            <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#19e3d6"/></linearGradient></defs>
+          </svg>
+        </span>
+        <span class="logo__txt">MYXDA<small>mobile&nbsp;dev</small></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <a class="nav__link" href="../index.html#platforms">Платформы</a>
+        <a class="nav__link" href="../index.html#stack">Стек</a>
+        <a class="nav__link" href="../index.html#dirs">Направления</a>
+        <a class="nav__link" href="../index.html#stages">Этапы</a>
+        <a class="nav__link" href="../index.html#versus">iOS vs Android</a>
+        <a class="nav__link" href="../index.html#articles">Статьи</a>
+        <a class="nav__link" href="../index.html#faq">FAQ</a>
+        <a class="btn btn--primary nav__cta" href="../index.html#contact">Связаться</a>
+      </nav>
+      <div class="hdr__actions">
+        <a class="btn btn--primary hdr__cta" href="../index.html#contact">Связаться с редакцией</a>
+        <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <article class="article">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Хлебные крошки"><a href="../index.html">Главная</a><span aria-hidden="true">›</span><a href="../index.html#articles">Статьи</a><span aria-hidden="true">›</span><span class="crumbs__cur" aria-current="page">С чего начать</span></nav>
+        <header class="article__head reveal">
+          <span class="article__cat">Карьера</span>
+          <h1 class="article__title">С чего начать обучение мобильной разработке</h1>
+          <div class="article__meta"><span><b>7 мин</b> чтения</span><span>Категория: <b>Карьера</b></span><span>Редакция MYXDA</span></div>
+          <p class="article__lead">Понятная дорожная карта для новичка: как выбрать платформу, не утонуть в выборе языка, какую базу освоить обязательно и какой первый проект собрать, чтобы за полгода дойти до уверенного джуниора.</p>
+        </header>
+        <div class="article__grid">
+          <aside class="toc reveal" aria-label="Содержание статьи">
+            <p class="toc__title">Содержание</p>
+            <ol>
+              <li><a href="#platform">Выберите платформу</a></li>
+              <li><a href="#lang">Язык и среда разработки</a></li>
+              <li><a href="#base">База, без которой не обойтись</a></li>
+              <li><a href="#first-app">Соберите первое приложение</a></li>
+              <li><a href="#practice">Практика, портфолио и комьюнити</a></li>
+              <li><a href="#mistakes">Частые ошибки новичков</a></li>
+              <li><a href="#plan">План на первые 3–6 месяцев</a></li>
+            </ol>
+          </aside>
+          <div class="prose reveal">
+            <p>Мобильная разработка кажется огромной: платформы, языки, фреймворки, сотни курсов и противоречивых советов. На деле путь новичка укладывается в простую последовательность — выбрать направление, освоить один язык и одну среду, подтянуть базу, собрать несколько небольших приложений и выйти на собеседование с портфолио. В этой статье мы разложим этот путь по шагам и закончим планом на первые полгода.</p>
+            <p>Главный принцип, который экономит месяцы: <strong>не распыляйтесь</strong>. Новичку не нужно одновременно учить и Swift, и Kotlin, и Flutter. Выберите одно направление, доведите его до рабочего навыка — а второй стек, если понадобится, освоить будет уже в разы легче.</p>
+
+            <h2 id="platform">Определитесь, под какую платформу учиться</h2>
+            <p>Первое решение — под что вы пишете приложения. Есть три основных пути, и у каждого своя логика выбора.</p>
+            <ul>
+              <li><strong>iOS (Apple)</strong> — язык Swift, среда Xcode, только под macOS. Аудитория платёжеспособная, экосистема предсказуемая, устройств для тестирования немного. Минус для старта — нужен Mac, без него полноценно разрабатывать под iOS не получится.</li>
+              <li><strong>Android (Google)</strong> — язык Kotlin, среда Android Studio, работает на Windows, macOS и Linux. Самая большая в мире доля устройств, низкий порог входа по железу, но больше разнообразия экранов и версий, которые приходится учитывать.</li>
+              <li><strong>Кроссплатформа</strong> — один код под обе системы. Flutter (язык Dart) и React Native (JavaScript/TypeScript) позволяют выпускать приложение и под iOS, и под Android. Быстрый выход на обе платформы ценой меньшего контроля над «нативными» деталями.</li>
+            </ul>
+            <p>Как выбрать новичку без опыта? Ориентируйтесь на три приземлённых фактора, а не на споры в интернете:</p>
+            <ol>
+              <li><strong>Какое у вас железо.</strong> Нет Mac и покупать не планируете — iOS отпадает, начинайте с Android или Flutter (Flutter под Android тоже собирается на Windows/Linux).</li>
+              <li><strong>Что вокруг вас по работе.</strong> Посмотрите вакансии в вашем городе или у компаний, куда хотите попасть. Учиться под реальный спрос мотивирует и быстрее окупается.</li>
+              <li><strong>Что вам ближе по духу.</strong> Нравятся продукты Apple и аккуратная экосистема — iOS. Хотите максимальную свободу и широкий рынок — Android. Важна скорость и две платформы сразу — кроссплатформа.</li>
+            </ol>
+            <aside class="callout"><span class="callout__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8h.01M11 12h1v4h1"/><circle cx="12" cy="12" r="9"/></svg></span><p><b>Совет.</b> Не выбирайте платформу «навсегда». Первый стек — это тренажёр, на котором вы учитесь думать как мобильный разработчик. Концепции экранов, состояния, асинхронности и работы с сетью переносятся между платформами почти один в один, поэтому второй язык даётся заметно легче.</p></aside>
+
+            <h2 id="lang">Освойте язык и среду разработки</h2>
+            <p>Выбрав платформу, вы получаете конкретную связку «язык + IDE». Установите её в первый же день и не откладывайте — учиться программированию в отрыве от среды малопродуктивно.</p>
+            <h3>iOS: Swift и Xcode</h3>
+            <p>Swift — современный, безопасный по типам язык Apple. Среда Xcode бесплатна в Mac App Store; внутри неё есть Swift Playgrounds для экспериментов и симулятор iPhone, чтобы запускать приложения без физического устройства. Для интерфейса сегодня учат декларативный фреймворк SwiftUI.</p>
+            <pre><code>// Swift: простейший экран на SwiftUI
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        Text("Привет, MYXDA!")
+            .font(.title)
+            .padding()
+    }
+}</code></pre>
+            <h3>Android: Kotlin и Android Studio</h3>
+            <p>Kotlin — официальный язык Android, лаконичный и совместимый с Java. Android Studio (на базе IntelliJ IDEA) бесплатна и работает на всех ОС, включает эмулятор устройств. Современный UI пишут на Jetpack Compose — декларативном подходе, идейно близком к SwiftUI.</p>
+            <pre><code>// Kotlin: экран на Jetpack Compose
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+
+@Composable
+fun Greeting() {
+    Text(text = "Привет, MYXDA!")
+}</code></pre>
+            <h3>Кроссплатформа: Dart и Flutter</h3>
+            <p>Flutter использует язык Dart и собирает приложение сразу под iOS и Android из одного кода. Установите Flutter SDK и плагин к VS Code или Android Studio. UI здесь тоже декларативный — из «виджетов».</p>
+            <pre><code>// Dart: виджет во Flutter
+import 'package:flutter/material.dart';
+
+class Greeting extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text('Привет, MYXDA!');
+  }
+}</code></pre>
+            <p>Заметьте, насколько похожи все три примера. Это не совпадение: современный мобильный UI почти везде декларативный — вы описываете, <em>что</em> должно быть на экране, а фреймворк сам решает, <em>как</em> это нарисовать и обновить.</p>
+
+            <h2 id="base">База, без которой не обойтись</h2>
+            <p>Язык и среда — это инструменты. Чтобы ими пользоваться осмысленно, нужна общая база, одинаковая для любой платформы. Без неё вы будете копировать код с форумов, не понимая, почему он работает.</p>
+            <h3>Основы программирования и ООП</h3>
+            <p>Переменные и типы, условия и циклы, функции, коллекции (списки, словари). Дальше — объектно-ориентированное программирование: классы и объекты, наследование, инкапсуляция, интерфейсы/протоколы. Мобильные SDK насквозь построены на ООП, поэтому эти понятия должны стать для вас родными.</p>
+            <h3>Git и контроль версий</h3>
+            <p>Git — обязательный навык, а не «бонус». Научитесь делать коммиты, ветки, разрешать конфликты и публиковать репозиторий на GitHub. Это одновременно ваша страховка от потери кода и витрина проектов для работодателя.</p>
+            <pre><code># Базовый цикл работы с Git
+git init
+git add .
+git commit -m "Первый экран приложения"
+git branch -M main
+git remote add origin &lt;ссылка-на-репозиторий&gt;
+git push -u origin main</code></pre>
+            <h3>Сеть и формат JSON</h3>
+            <p>Почти любое реальное приложение ходит в интернет: запрашивает данные у API по HTTP и получает ответ в формате JSON. Разберитесь, что такое REST-запрос, методы GET и POST, коды ответов, и как превратить JSON в объекты вашего языка (декодирование/парсинг).</p>
+            <pre><code>{
+  "city": "Москва",
+  "temp": -4,
+  "condition": "снег"
+}</code></pre>
+            <h3>Асинхронность</h3>
+            <p>Сетевые запросы и тяжёлые операции нельзя выполнять в основном потоке — иначе интерфейс «зависнет». Поэтому в мобильной разработке всё, что долго, делается асинхронно. В Swift это <code>async/await</code>, в Kotlin — корутины (<code>suspend</code>-функции), в Dart — <code>Future</code> и <code>async/await</code>. Понимание асинхронности отделяет джуниора от того, кто просто «прошёл курс».</p>
+
+            <h2 id="first-app">Соберите первое приложение</h2>
+            <p>Теория закрепляется только практикой. Как только разберётесь с языком и базовым UI, начинайте свой первый pet-проект. Главное правило — он должен быть <strong>маленьким и завершаемым</strong>. Лучше доделать простое приложение, чем бросить амбициозное на середине.</p>
+            <p>Проверенные идеи для старта, по нарастанию сложности:</p>
+            <ul>
+              <li><strong>Список дел (to-do).</strong> Классика первого проекта: добавление и удаление задач, отметка «выполнено», сохранение списка на устройстве. Здесь вы освоите списки, состояние экрана и локальное хранение.</li>
+              <li><strong>Заметки.</strong> Шаг вперёд: несколько экранов (список заметок → редактирование), навигация между ними, сохранение текста. Хорошо тренирует архитектуру.</li>
+              <li><strong>Погода.</strong> Приложение, которое запрашивает данные у открытого погодного API и показывает их. Здесь сходится всё: сеть, JSON, асинхронность и вёрстка экрана под реальные данные.</li>
+            </ul>
+            <p>Соберите первые два-три приложения именно в таком порядке. К моменту, когда вы доведёте до конца «Погоду», вы пройдёте полный цикл мобильной разработки: интерфейс, состояние, локальные данные, сеть и асинхронность — то есть весь джуниорский минимум на практике.</p>
+
+            <h2 id="practice">Практика, портфолио и комьюнити</h2>
+            <p>Навык растёт не от количества просмотренных курсов, а от количества написанного кода. Выстраивайте обучение вокруг практики.</p>
+            <ul>
+              <li><strong>Кодьте каждый день, пусть понемногу.</strong> Полчаса ежедневно дают больше, чем восемь часов раз в неделю: навык программирования держится на регулярности.</li>
+              <li><strong>Ведите портфолио на GitHub.</strong> Каждый pet-проект — отдельный репозиторий с понятным README: что это, какие технологии, скриншоты. Для джуниора живой GitHub нередко важнее строчки в резюме.</li>
+              <li><strong>Разбирайте чужой код.</strong> Читайте открытые проекты и официальные примеры от Apple, Google и команды Flutter — это быстрый способ увидеть, «как принято».</li>
+              <li><strong>Будьте в комьюнити.</strong> Профильные чаты, форумы, Stack Overflow, локальные митапы. Умение грамотно задать вопрос и помочь другим ускоряет рост и заводит полезные знакомства.</li>
+            </ul>
+            <p>Когда наберётся два-три завершённых проекта, начинайте читать вакансии джуниоров и сверяться с требованиями — это покажет конкретные пробелы и убережёт от «вечного обучения» без выхода на рынок.</p>
+
+            <h2 id="mistakes">Частые ошибки новичков</h2>
+            <p>Большинство тех, кто застревает, спотыкаются об один и тот же набор граблей. Зная их заранее, вы сэкономите месяцы.</p>
+            <table>
+              <thead>
+                <tr><th>Ошибка</th><th>Чем грозит</th><th>Как правильно</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Учить несколько языков сразу</td><td>Поверхностные знания, ни одного завершённого проекта</td><td>Один стек до рабочего уровня, потом расширяйтесь</td></tr>
+                <tr><td>«Курсомания» без практики</td><td>Иллюзия прогресса, код писать так и не научились</td><td>На каждый час теории — час своего кода</td></tr>
+                <tr><td>Слишком амбициозный первый проект</td><td>Выгорание и брошенная работа</td><td>Маленькие завершаемые приложения</td></tr>
+                <tr><td>Игнорировать Git и основы</td><td>Потеря кода, провал на собеседовании</td><td>Git и база — с самого начала, а не «потом»</td></tr>
+                <tr><td>Бесконечно ждать «готовности»</td><td>Месяцы без отклика на вакансии</td><td>Идти на собеседования рано — это тоже обучение</td></tr>
+              </tbody>
+            </table>
+
+            <h2 id="plan">План на первые 3–6 месяцев</h2>
+            <p>Соберём всё в реалистичный график для занятого человека (1–2 часа в день). Сроки ориентировочные — двигайтесь в своём темпе, но придерживайтесь порядка.</p>
+            <table>
+              <thead>
+                <tr><th>Период</th><th>Фокус</th><th>Результат</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Месяц 1</td><td>Выбор платформы, установка среды, основы языка и ООП</td><td>Пишете простые программы, понимаете синтаксис</td></tr>
+                <tr><td>Месяц 2</td><td>Базовый UI (SwiftUI / Compose / Flutter), Git и GitHub</td><td>Собран «Список дел», код в репозитории</td></tr>
+                <tr><td>Месяц 3</td><td>Навигация, несколько экранов, локальное хранение</td><td>Готово приложение «Заметки»</td></tr>
+                <tr><td>Месяц 4</td><td>Сеть, JSON, асинхронность</td><td>Готова «Погода» с реальным API</td></tr>
+                <tr><td>Месяц 5</td><td>Углубление: архитектура, чистый код, тестирование основ</td><td>Рефакторинг проектов, аккуратные README</td></tr>
+                <tr><td>Месяц 6</td><td>Портфолио, резюме, подготовка к собеседованиям</td><td>3+ проекта, первые отклики на вакансии джуниора</td></tr>
+              </tbody>
+            </table>
+            <p>Этого достаточно, чтобы выйти на рынок junior-разработчиком. Дальше расти будете уже на реальных задачах — а вместе с ними появится и понимание, нужен ли вам второй стек или углубление в выбранный.</p>
+          </div>
+        </div>
+        <div class="article__foot">
+          <div class="takeaways reveal"><h2>Коротко</h2><ul>
+            <li>Выберите одну платформу под своё железо и спрос — и не распыляйтесь на несколько стеков сразу.</li>
+            <li>Связка «язык + среда» ставится в первый день: Swift+Xcode, Kotlin+Android Studio или Dart+Flutter.</li>
+            <li>Обязательная база одинакова везде: основы и ООП, Git, сеть и JSON, асинхронность.</li>
+            <li>Учитесь на маленьких завершаемых проектах: список дел → заметки → погода.</li>
+            <li>Практика и портфолио на GitHub важнее количества курсов; на собеседования идите рано.</li>
+          </ul></div>
+          <p class="related__title">Читайте также</p>
+          <div class="related">
+            <article class="related__card reveal"><span class="cat">iOS</span><h3><a href="swiftui-basics.html">SwiftUI простыми словами: как устроены экраны</a></h3></article>
+            <article class="related__card reveal"><span class="cat">Android</span><h3><a href="kotlin-compose.html">Kotlin и Jetpack Compose: современный Android</a></h3></article>
+            <article class="related__card reveal"><span class="cat">Кроссплатформа</span><h3><a href="flutter-vs-react-native.html">Flutter или React Native: что выбрать в 2026</a></h3></article>
+          </div>
+          <div class="article__cta reveal"><div><h2>Остались вопросы?</h2><p>Предложите тему или задайте вопрос редакции MYXDA — мы читаем все письма.</p></div><a class="btn btn--primary btn--lg" href="../index.html#contact">Связаться с редакцией</a></div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <div class="foot__brand">
+        <a class="logo" href="../index.html" aria-label="MYXDA">
+          <span class="logo__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="url(#lg2)" stroke-width="1.6"/>
+              <text x="12" y="14.5" font-family="monospace" font-size="7" font-weight="700" fill="url(#lg2)" text-anchor="middle">{}</text>
+              <defs><linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#19e3d6"/></linearGradient></defs>
+            </svg>
+          </span>
+          <span class="logo__txt">MYXDA<small>mobile&nbsp;dev</small></span>
+        </a>
+        <p class="foot__about">Информационный журнал-энциклопедия о мобильной разработке. Платформы, языки, инструменты и этапы создания приложений — простым языком.</p>
+      </div>
+      <nav class="foot__col" aria-label="Разделы">
+        <h3>Разделы</h3>
+        <a href="../index.html#platforms">Платформы</a>
+        <a href="../index.html#stack">Технологии</a>
+        <a href="../index.html#dirs">Направления</a>
+        <a href="../index.html#stages">Этапы</a>
+      </nav>
+      <nav class="foot__col" aria-label="Материалы">
+        <h3>Материалы</h3>
+        <a href="../index.html#versus">iOS vs Android</a>
+        <a href="../index.html#articles">Статьи</a>
+        <a href="../index.html#faq">FAQ</a>
+        <a href="../index.html#contact">Связаться</a>
+      </nav>
+      <div class="foot__col foot__contacts">
+        <h3>Контакты</h3>
+        <p><a href="mailto:ХХХХХ">ХХХХХ</a></p>
+        <p><a href="tel:ХХХХХ">ХХХХХ</a></p>
+        <p>Telegram: ХХХХХ</p>
+        <p>Адрес: ХХХХХ</p>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <div class="wrap foot__bottom-in">
+        <span>© <span id="year">2026</span> MYXDA. Информационный проект о мобильной разработке.</span>
+        <span>Все контактные данные на сайте — заглушки (ХХХХХ).</span>
+      </div>
+    </div>
+  </footer>
+  <button class="totop" id="toTop" aria-label="Наверх" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

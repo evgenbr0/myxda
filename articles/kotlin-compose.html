@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+  <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kotlin и Jetpack Compose: современный Android — MYXDA</title>
+  <meta name="description" content="Почему Kotlin вытеснил Java и как устроен Jetpack Compose: декларативный UI, composable-функции, состояние и рекомпозиция, пример счётчика и экосистема Material 3." />
+  <meta name="theme-color" content="#0a0a14" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Kotlin и Jetpack Compose: современный Android" />
+  <meta property="og:description" content="Почему Kotlin вытеснил Java и как устроен Jetpack Compose: декларативный UI, composable-функции, состояние и рекомпозиция, пример счётчика и экосистема Material 3." />
+  <meta property="og:locale" content="ru_RU" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/article.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Kotlin и Jetpack Compose: современный Android","description":"Почему Kotlin вытеснил Java и как устроен Jetpack Compose: декларативный UI, composable-функции, состояние и рекомпозиция, пример счётчика и экосистема Material 3.","inLanguage":"ru-RU","author":{"@type":"Organization","name":"Редакция MYXDA"},"publisher":{"@type":"Organization","name":"MYXDA","email":"ХХХХХ","telephone":"ХХХХХ"},"datePublished":"2026-02-01"}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="hdr" id="hdr">
+    <div class="wrap hdr__in">
+      <a class="logo" href="../index.html" aria-label="MYXDA — на главную">
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="url(#lg)" stroke-width="1.6"/>
+            <text x="12" y="14.5" font-family="monospace" font-size="7" font-weight="700" fill="url(#lg)" text-anchor="middle">{}</text>
+            <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#19e3d6"/></linearGradient></defs>
+          </svg>
+        </span>
+        <span class="logo__txt">MYXDA<small>mobile&nbsp;dev</small></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <a class="nav__link" href="../index.html#platforms">Платформы</a>
+        <a class="nav__link" href="../index.html#stack">Стек</a>
+        <a class="nav__link" href="../index.html#dirs">Направления</a>
+        <a class="nav__link" href="../index.html#stages">Этапы</a>
+        <a class="nav__link" href="../index.html#versus">iOS vs Android</a>
+        <a class="nav__link" href="../index.html#articles">Статьи</a>
+        <a class="nav__link" href="../index.html#faq">FAQ</a>
+        <a class="btn btn--primary nav__cta" href="../index.html#contact">Связаться</a>
+      </nav>
+      <div class="hdr__actions">
+        <a class="btn btn--primary hdr__cta" href="../index.html#contact">Связаться с редакцией</a>
+        <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <article class="article">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Хлебные крошки"><a href="../index.html">Главная</a><span aria-hidden="true">›</span><a href="../index.html#articles">Статьи</a><span aria-hidden="true">›</span><span class="crumbs__cur" aria-current="page">Kotlin и Jetpack Compose</span></nav>
+        <header class="article__head reveal">
+          <span class="article__cat">Android</span>
+          <h1 class="article__title">Kotlin и Jetpack Compose: современный Android</h1>
+          <div class="article__meta"><span><b>8 мин</b> чтения</span><span>Категория: <b>Android</b></span><span>Редакция MYXDA</span></div>
+          <p class="article__lead">Современная Android-разработка строится на двух китах: языке Kotlin и декларативном UI-фреймворке Jetpack Compose. Разбираемся, почему индустрия ушла от Java и XML, и как теперь устроены экраны.</p>
+        </header>
+        <div class="article__grid">
+          <aside class="toc reveal" aria-label="Содержание статьи">
+            <p class="toc__title">Содержание</p>
+            <ol>
+              <li><a href="#why-kotlin">Почему Kotlin вытеснил Java</a></li>
+              <li><a href="#what-compose">Что такое Jetpack Compose</a></li>
+              <li><a href="#state">Composable-функции и состояние</a></li>
+              <li><a href="#example">Пример: счётчик на Compose</a></li>
+              <li><a href="#vs-xml">Чем Compose лучше старого подхода</a></li>
+              <li><a href="#ecosystem">Экосистема: Material 3, навигация, превью</a></li>
+            </ol>
+          </aside>
+          <div class="prose reveal">
+            <p>Если вы открываете вакансию Android-разработчика в 2026 году, почти наверняка увидите два требования: знание <b>Kotlin</b> и опыт работы с <b>Jetpack Compose</b>. Это не мода, а официальная позиция Google: с 2019 года Kotlin объявлен предпочтительным языком для Android, а Compose стал рекомендуемым инструментом для построения интерфейса. Java и разметка через XML никуда не исчезли — миллионы строк рабочего кода всё ещё на них, — но новые проекты пишут уже иначе.</p>
+            <p>В этой статье разберём, в чём практическая разница: почему Kotlin удобнее Java, что значит «декларативный UI», как работают composable-функции и состояние, и почему Compose сокращает количество кода и багов. По ходу — небольшой, но полностью рабочий пример.</p>
+
+            <h2 id="why-kotlin">Почему Kotlin вытеснил Java</h2>
+            <p>Kotlin — язык от компании JetBrains, полностью совместимый с виртуальной машиной Java (JVM). Это значит, что Kotlin и Java спокойно живут в одном проекте: класс на Kotlin вызывает класс на Java и наоборот, можно мигрировать постепенно, файл за файлом. Именно совместимость сделала переход безболезненным. Но удержали разработчиков уже сами возможности языка.</p>
+
+            <h3>Null-safety: меньше падений</h3>
+            <p>Самая частая ошибка в Java-приложениях — <code>NullPointerException</code>, обращение к объекту, которого нет. Kotlin встраивает защиту от неё прямо в систему типов: тип <code>String</code> не может быть <code>null</code>, а если значение допустимо отсутствующее — это другой тип, <code>String?</code>. Компилятор не даст вам случайно разыменовать nullable-значение без проверки.</p>
+            <pre><code>val name: String = "Аня"      // null присвоить нельзя
+val nick: String? = null      // а здесь можно
+
+// безопасный вызов: вернёт null вместо падения
+val len: Int? = nick?.length
+
+// значение по умолчанию через элвис-оператор
+val safeLen: Int = nick?.length ?: 0</code></pre>
+
+            <h3>Краткость</h3>
+            <p>Kotlin убирает шаблонный код. Класс-контейнер данных, который в Java занимает десятки строк с геттерами, сеттерами, <code>equals</code> и <code>hashCode</code>, в Kotlin умещается в одну строку:</p>
+            <pre><code>data class User(val id: Int, val name: String)</code></pre>
+            <p>Компилятор сам сгенерирует <code>equals()</code>, <code>hashCode()</code>, <code>toString()</code> и удобный <code>copy()</code>. Плюс выводимые типы (<code>val x = 42</code> вместо <code>int x = 42</code>), лямбды, функции-расширения и строковые шаблоны (<code>"Привет, $name"</code>) делают код заметно компактнее и читаемее.</p>
+
+            <h3>Корутины: понятная асинхронность</h3>
+            <p>Сетевые запросы, работа с базой и файлами нельзя выполнять в главном потоке — иначе интерфейс «зависнет». Раньше для фоновой работы городили колбэки и вложенные обработчики. Kotlin предлагает <b>корутины</b> — лёгкие «потоки», которые позволяют писать асинхронный код почти как обычный, последовательный:</p>
+            <pre><code>suspend fun loadProfile(id: Int): User {
+    val user = api.fetchUser(id)   // приостановка без блокировки потока
+    val avatar = api.fetchAvatar(user)
+    return user.copy(avatar = avatar)
+}</code></pre>
+            <p>Ключевое слово <code>suspend</code> помечает функцию, которая может «приостанавливаться» и возобновляться позже, не блокируя поток. Код читается сверху вниз, без лестницы из колбэков.</p>
+
+            <aside class="callout"><span class="callout__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8h.01M11 12h1v4h1"/><circle cx="12" cy="12" r="9"/></svg></span><p><b>Совет.</b> Если вы переходите со старого проекта, не переписывайте всё разом. Благодаря совместимости с Java можно начать с новых экранов на Kotlin и Compose, а старые трогать только при необходимости.</p></aside>
+
+            <h2 id="what-compose">Что такое Jetpack Compose</h2>
+            <p>Jetpack Compose — это современный набор инструментов для построения интерфейса Android полностью на Kotlin, без файлов разметки XML. Главное отличие от старого подхода — <b>декларативность</b>.</p>
+            <p>В классическом (императивном) подходе вы описывали разметку в XML, а в коде вручную находили элементы и меняли их по мере событий: «возьми этот <code>TextView</code> и поставь ему новый текст», «спрячь эту кнопку». Чем сложнее экран, тем легче забыть обновить какой-то элемент — отсюда рассинхронизация интерфейса и состояния.</p>
+            <p>В декларативном подходе вы описываете, <b>как экран должен выглядеть для текущего состояния</b>, а не последовательность изменений. Когда состояние меняется, Compose сам перерисовывает то, что зависит от этих данных. Формула простая: <b>UI = f(состояние)</b> — интерфейс есть функция от данных.</p>
+            <pre><code>@Composable
+fun Greeting(name: String) {
+    Text(text = "Привет, $name!")
+}</code></pre>
+            <p>Аннотация <code>@Composable</code> превращает обычную Kotlin-функцию в «строительный блок» интерфейса. Такие функции можно вкладывать друг в друга, собирая экран как из кубиков, и переиспользовать.</p>
+
+            <h2 id="state">Composable-функции и состояние</h2>
+            <p>Раз UI — это функция от состояния, ключевой вопрос: где хранить данные и как заставить интерфейс реагировать на их изменение. В Compose за это отвечают три понятия: <code>mutableStateOf</code>, <code>remember</code> и <b>рекомпозиция</b>.</p>
+            <ul>
+              <li><b><code>mutableStateOf</code></b> создаёт наблюдаемое состояние. Compose следит за любым composable, который читает это значение, и помечает его на перерисовку при изменении.</li>
+              <li><b><code>remember</code></b> сохраняет значение между перерисовками. Без него состояние создавалось бы заново при каждой рекомпозиции, и счётчик всегда сбрасывался бы в начало.</li>
+              <li><b>Рекомпозиция</b> — это повторный вызов composable-функций при изменении данных, которые они читают. Compose умён: он перевызывает не весь экран, а только те функции, чьи входные данные действительно поменялись.</li>
+            </ul>
+            <p>На практике их объединяют так:</p>
+            <pre><code>var count by remember { mutableStateOf(0) }</code></pre>
+            <p>Здесь <code>count</code> ведёт себя как обычная переменная: читаем <code>count</code>, пишем <code>count = count + 1</code>. Но за кулисами это наблюдаемое состояние, переживающее рекомпозиции, и любое изменение автоматически обновит зависящий от него интерфейс.</p>
+
+            <aside class="callout"><span class="callout__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8h.01M11 12h1v4h1"/><circle cx="12" cy="12" r="9"/></svg></span><p><b>Совет.</b> Если состояние должно пережить поворот экрана, используйте <code>rememberSaveable</code> вместо <code>remember</code> — оно сохранит значение при пересоздании активности.</p></aside>
+
+            <h2 id="example">Пример: счётчик на Compose</h2>
+            <p>Соберём всё вместе. Ниже — полноценный экран со счётчиком: текст показывает текущее значение, кнопка увеличивает его на единицу. Обратите внимание, что нигде нет команды «обнови текст» — мы лишь меняем состояние, а перерисовку Compose берёт на себя.</p>
+            <pre><code>import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+
+@Composable
+fun CounterScreen() {
+    // Наблюдаемое состояние, переживающее рекомпозицию
+    var count by remember { mutableStateOf(0) }
+
+    Column(
+        modifier = Modifier.fillMaxSize().padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = "Нажатий: $count")
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(onClick = { count++ }) {
+            Text(text = "Нажми меня")
+        }
+    }
+}</code></pre>
+            <p>Что здесь происходит по шагам: при первом запуске <code>count</code> равен нулю и на экране видно «Нажатий: 0». По нажатию на кнопку срабатывает <code>onClick</code>, который увеличивает <code>count</code>. Поскольку <code>Text</code> читает <code>count</code>, Compose помечает именно его на рекомпозицию и перерисовывает с новым значением. <code>Column</code>, <code>Button</code> и прочее, что от <code>count</code> не зависит, не трогается.</p>
+
+            <h2 id="vs-xml">Чем Compose лучше старого подхода</h2>
+            <p>Главный выигрыш — единый источник правды. Состояние живёт в одном месте, а интерфейс автоматически ему соответствует, поэтому исчезает целый класс ошибок «забыли обновить элемент». Заодно убирается шов между XML и кодом: больше не нужно искать вьюхи по идентификаторам и связывать их вручную.</p>
+            <table>
+              <thead>
+                <tr><th>Аспект</th><th>View / XML</th><th>Jetpack Compose</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Подход</td><td>Императивный: меняем элементы вручную</td><td>Декларативный: описываем результат</td></tr>
+                <tr><td>Разметка</td><td>Отдельные XML-файлы</td><td>Всё на Kotlin, в одном месте</td></tr>
+                <tr><td>Поиск элементов</td><td>По id (findViewById / binding)</td><td>Не требуется</td></tr>
+                <tr><td>Обновление UI</td><td>Вручную при каждом событии</td><td>Автоматически по состоянию</td></tr>
+                <tr><td>Переиспользование</td><td>Сложнее (кастомные View, include)</td><td>Обычные функции</td></tr>
+              </tbody>
+            </table>
+            <p>Кода в итоге меньше, он сосредоточен в одном файле и читается линейно. Это не значит, что Compose решает все задачи лучше: у зрелого XML-подхода огромная экосистема и масса готовых решений, а Compose требует более внимательной работы с производительностью рекомпозиции. Но для новых проектов вектор индустрии однозначен.</p>
+
+            <h2 id="ecosystem">Экосистема: Material 3, навигация, превью</h2>
+            <p>Compose — это не только базовые «кубики», но и развитая обвязка вокруг.</p>
+            <h3>Material 3</h3>
+            <p>Библиотека <code>material3</code> приносит готовые компоненты в стиле актуального дизайна Google: кнопки, карточки, поля ввода, верхние панели, нижнюю навигацию. Через <code>MaterialTheme</code> задаются цветовая схема, типографика и формы, а поддержка динамических цветов подстраивает палитру под обои пользователя.</p>
+            <h3>Навигация</h3>
+            <p>Библиотека Navigation Compose позволяет описывать переходы между экранами декларативно — через граф маршрутов и <code>NavController</code>, который управляет стеком экранов и передачей аргументов между ними.</p>
+            <pre><code>@Composable
+fun AppNav(navController: NavHostController) {
+    NavHost(navController, startDestination = "home") {
+        composable("home") { HomeScreen(navController) }
+        composable("counter") { CounterScreen() }
+    }
+}</code></pre>
+            <h3>Превью прямо в IDE</h3>
+            <p>Одна из самых любимых разработчиками возможностей — аннотация <code>@Preview</code>. Она отрисовывает composable в Android Studio без запуска приложения на устройстве или эмуляторе: меняете код — видите результат в панели рядом.</p>
+            <pre><code>@Preview(showBackground = true)
+@Composable
+fun CounterScreenPreview() {
+    CounterScreen()
+}</code></pre>
+            <p>Можно сделать несколько превью с разными данными, темами или размерами экрана и видеть их одновременно — это резко ускоряет проработку интерфейса.</p>
+          </div>
+        </div>
+        <div class="article__foot">
+          <div class="takeaways reveal"><h2>Коротко</h2><ul>
+            <li>Kotlin — официально предпочтительный язык Android: null-safety снижает число падений, синтаксис короче, корутины упрощают асинхронность, а совместимость с Java позволяет мигрировать постепенно.</li>
+            <li>Jetpack Compose строит интерфейс декларативно на Kotlin без XML по принципу «UI = функция от состояния».</li>
+            <li>Состояние держится на связке <code>mutableStateOf</code> + <code>remember</code>, а обновляет UI рекомпозиция — повторный вызов только тех функций, чьи данные изменились.</li>
+            <li>По сравнению с View/XML Compose убирает ручной поиск и обновление элементов, сокращает код и устраняет рассинхрон UI и данных.</li>
+            <li>Вокруг Compose выросла экосистема: Material 3, Navigation Compose и мгновенные превью <code>@Preview</code> прямо в Android Studio.</li>
+          </ul></div>
+          <p class="related__title">Читайте также</p>
+          <div class="related">
+            <article class="related__card reveal"><span class="cat">iOS</span><h3><a href="swiftui-basics.html">SwiftUI простыми словами: как устроены экраны</a></h3></article>
+            <article class="related__card reveal"><span class="cat">Кроссплатформа</span><h3><a href="kotlin-multiplatform.html">Kotlin Multiplatform: один код, две платформы</a></h3></article>
+            <article class="related__card reveal"><span class="cat">Карьера</span><h3><a href="start-mobile-dev.html">С чего начать обучение мобильной разработке</a></h3></article>
+          </div>
+          <div class="article__cta reveal"><div><h2>Остались вопросы?</h2><p>Предложите тему или задайте вопрос редакции MYXDA — мы читаем все письма.</p></div><a class="btn btn--primary btn--lg" href="../index.html#contact">Связаться с редакцией</a></div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <div class="foot__brand">
+        <a class="logo" href="../index.html" aria-label="MYXDA">
+          <span class="logo__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="url(#lg2)" stroke-width="1.6"/>
+              <text x="12" y="14.5" font-family="monospace" font-size="7" font-weight="700" fill="url(#lg2)" text-anchor="middle">{}</text>
+              <defs><linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#19e3d6"/></linearGradient></defs>
+            </svg>
+          </span>
+          <span class="logo__txt">MYXDA<small>mobile&nbsp;dev</small></span>
+        </a>
+        <p class="foot__about">Информационный журнал-энциклопедия о мобильной разработке. Платформы, языки, инструменты и этапы создания приложений — простым языком.</p>
+      </div>
+      <nav class="foot__col" aria-label="Разделы">
+        <h3>Разделы</h3>
+        <a href="../index.html#platforms">Платформы</a>
+        <a href="../index.html#stack">Технологии</a>
+        <a href="../index.html#dirs">Направления</a>
+        <a href="../index.html#stages">Этапы</a>
+      </nav>
+      <nav class="foot__col" aria-label="Материалы">
+        <h3>Материалы</h3>
+        <a href="../index.html#versus">iOS vs Android</a>
+        <a href="../index.html#articles">Статьи</a>
+        <a href="../index.html#faq">FAQ</a>
+        <a href="../index.html#contact">Связаться</a>
+      </nav>
+      <div class="foot__col foot__contacts">
+        <h3>Контакты</h3>
+        <p><a href="mailto:ХХХХХ">ХХХХХ</a></p>
+        <p><a href="tel:ХХХХХ">ХХХХХ</a></p>
+        <p>Telegram: ХХХХХ</p>
+        <p>Адрес: ХХХХХ</p>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <div class="wrap foot__bottom-in">
+        <span>© <span id="year">2026</span> MYXDA. Информационный проект о мобильной разработке.</span>
+        <span>Все контактные данные на сайте — заглушки (ХХХХХ).</span>
+      </div>
+    </div>
+  </footer>
+  <button class="totop" id="toTop" aria-label="Наверх" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

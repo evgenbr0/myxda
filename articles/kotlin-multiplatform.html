@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+  <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kotlin Multiplatform: один код, две платформы — MYXDA</title>
+  <meta name="description" content="Что такое Kotlin Multiplatform: как шарить бизнес-логику между iOS и Android, оставляя нативный UI, как работает expect/actual и чем KMP отличается от Flutter." />
+  <meta name="theme-color" content="#0a0a14" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Kotlin Multiplatform: один код, две платформы" />
+  <meta property="og:description" content="Что такое Kotlin Multiplatform: как шарить бизнес-логику между iOS и Android, оставляя нативный UI, как работает expect/actual и чем KMP отличается от Flutter." />
+  <meta property="og:locale" content="ru_RU" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/article.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Kotlin Multiplatform: один код, две платформы","description":"Что такое Kotlin Multiplatform: как шарить бизнес-логику между iOS и Android, оставляя нативный UI, как работает expect/actual и чем KMP отличается от Flutter.","inLanguage":"ru-RU","author":{"@type":"Organization","name":"Редакция MYXDA"},"publisher":{"@type":"Organization","name":"MYXDA","email":"ХХХХХ","telephone":"ХХХХХ"},"datePublished":"2026-02-01"}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="hdr" id="hdr">
+    <div class="wrap hdr__in">
+      <a class="logo" href="../index.html" aria-label="MYXDA — на главную">
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="url(#lg)" stroke-width="1.6"/>
+            <text x="12" y="14.5" font-family="monospace" font-size="7" font-weight="700" fill="url(#lg)" text-anchor="middle">{}</text>
+            <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#19e3d6"/></linearGradient></defs>
+          </svg>
+        </span>
+        <span class="logo__txt">MYXDA<small>mobile&nbsp;dev</small></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <a class="nav__link" href="../index.html#platforms">Платформы</a>
+        <a class="nav__link" href="../index.html#stack">Стек</a>
+        <a class="nav__link" href="../index.html#dirs">Направления</a>
+        <a class="nav__link" href="../index.html#stages">Этапы</a>
+        <a class="nav__link" href="../index.html#versus">iOS vs Android</a>
+        <a class="nav__link" href="../index.html#articles">Статьи</a>
+        <a class="nav__link" href="../index.html#faq">FAQ</a>
+        <a class="btn btn--primary nav__cta" href="../index.html#contact">Связаться</a>
+      </nav>
+      <div class="hdr__actions">
+        <a class="btn btn--primary hdr__cta" href="../index.html#contact">Связаться с редакцией</a>
+        <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <article class="article">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Хлебные крошки"><a href="../index.html">Главная</a><span aria-hidden="true">›</span><a href="../index.html#articles">Статьи</a><span aria-hidden="true">›</span><span class="crumbs__cur" aria-current="page">Kotlin Multiplatform</span></nav>
+        <header class="article__head reveal">
+          <span class="article__cat">Кроссплатформа</span>
+          <h1 class="article__title">Kotlin Multiplatform: один код, две платформы</h1>
+          <div class="article__meta"><span><b>6 мин</b> чтения</span><span>Категория: <b>Кроссплатформа</b></span><span>Редакция MYXDA</span></div>
+          <p class="article__lead">KMP позволяет писать бизнес-логику один раз и использовать её и в iOS, и в Android-приложении, не отказываясь от нативного интерфейса. Разбираемся, что именно стоит шарить, как это устроено технически и кому такой подход реально подходит.</p>
+        </header>
+        <div class="article__grid">
+          <aside class="toc reveal" aria-label="Содержание статьи">
+            <p class="toc__title">Содержание</p>
+            <ol>
+              <li><a href="#what-is-kmp">Что такое Kotlin Multiplatform</a></li>
+              <li><a href="#what-to-share">Что шарить, а что оставить нативным</a></li>
+              <li><a href="#expect-actual">Как это работает: expect/actual</a></li>
+              <li><a href="#vs-flutter-rn">Чем KMP отличается от Flutter и React Native</a></li>
+              <li><a href="#who-fits">Кому подходит, а кому нет</a></li>
+            </ol>
+          </aside>
+          <div class="prose reveal">
+            <p>Идея «написать один раз — запустить везде» преследует мобильную разработку с самого её появления. Команды устают поддерживать два почти одинаковых приложения, в которых одна и та же бизнес-логика дублируется на Swift и на Kotlin, а баги приходится чинить дважды. Kotlin Multiplatform (KMP) предлагает решение, отличное от привычных кроссплатформенных фреймворков: он не пытается объединить интерфейс, а объединяет то, что и должно быть общим, — логику работы приложения.</p>
+            <p>Технология разрабатывается компанией JetBrains, создателями языка Kotlin и среды IntelliJ IDEA. В ноябре 2023 года JetBrains объявила Kotlin Multiplatform стабильным (Stable) для продакшена, а Google официально поддержал KMP для разработки бизнес-логики Android-приложений. Это превратило KMP из экспериментальной затеи во вполне зрелый инструмент.</p>
+
+            <h2 id="what-is-kmp">Что такое Kotlin Multiplatform</h2>
+            <p>Kotlin Multiplatform — это технология, позволяющая компилировать код на языке Kotlin под разные платформы из одной кодовой базы. Один и тот же модуль на Kotlin может превратиться в JVM-байт-код для Android, в нативный фреймворк для iOS, в JavaScript или WebAssembly для веба и в нативные бинарники для десктопа.</p>
+            <p>Ключевой принцип KMP формулируется как «общая логика — нативный UI». Это значит, что разделяемым (shared) делается всё, что не относится к интерфейсу: правила работы приложения, обращения к серверу, модели данных, валидация, кэширование. А пользовательский интерфейс остаётся полностью нативным — на SwiftUI или UIKit для iOS и на Jetpack Compose или классических View для Android.</p>
+            <p>Такой подход принципиально отличается от «всё общее». Вы не жертвуете внешним видом, отзывчивостью и соответствием платформенным гайдлайнам ради переиспользования кода. Пользователь получает приложение, которое выглядит и ощущается родным для своей системы, а команда экономит силы на самой объёмной и подверженной ошибкам части — логике.</p>
+            <aside class="callout"><span class="callout__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8h.01M11 12h1v4h1"/><circle cx="12" cy="12" r="9"/></svg></span><p><b>Совет.</b> Не путайте Kotlin Multiplatform и Compose Multiplatform. KMP шарит логику, а UI оставляет нативным. Compose Multiplatform — отдельная технология поверх KMP, которая позволяет писать ещё и общий интерфейс на Compose, в том числе для iOS. Это разные уровни общности, и выбирать их нужно осознанно.</p></aside>
+
+            <h2 id="what-to-share">Что шарить, а что оставить нативным</h2>
+            <p>Граница между общим и нативным кодом — главное проектное решение в KMP-приложении. Провести её правильно важнее, чем выучить синтаксис.</p>
+            <p>В общий модуль обычно выносят:</p>
+            <ul>
+              <li><b>Бизнес-логику</b> — сценарии использования (use cases), правила и расчёты, которые не должны отличаться на разных платформах.</li>
+              <li><b>Работу с сетью</b> — клиент для HTTP-запросов, сериализацию JSON, обработку ответов и ошибок API. Здесь хорошо подходит библиотека Ktor.</li>
+              <li><b>Модели данных</b> — классы, описывающие сущности приложения, и их преобразования между слоями.</li>
+              <li><b>Локальное хранение</b> — доступ к базе данных и настройкам. Для базы часто используют SQLDelight, для key-value — Multiplatform Settings.</li>
+              <li><b>Слой презентации</b> — ViewModel и управление состоянием экрана, если команда готова делить и его.</li>
+            </ul>
+            <p>Нативной остаётся прежде всего <b>презентация интерфейса</b>: вёрстка экранов, анимации, переходы, работа с системными элементами. На iOS это SwiftUI или UIKit, на Android — Jetpack Compose или View-система. Нативными остаются и те части, что тесно завязаны на конкретную платформу: пуш-уведомления, биометрия, доступ к камере и датчикам, специфичные системные API.</p>
+            <aside class="callout"><span class="callout__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8h.01M11 12h1v4h1"/><circle cx="12" cy="12" r="9"/></svg></span><p><b>Совет.</b> Начинать миграцию существующего проекта на KMP проще не с UI, а с одного изолированного слоя — например, с сетевого клиента или моделей. Так вы получите выгоду быстро и без риска переписать всё приложение разом.</p></aside>
+
+            <h2 id="expect-actual">Как это работает: expect/actual</h2>
+            <p>Большая часть общего кода полностью платформонезависима и компилируется под все цели без изменений. Но иногда из общего модуля нужно обратиться к тому, что на каждой платформе реализуется по-своему — например, к идентификатору устройства или к системному генератору UUID. Для этого в Kotlin есть механизм <code>expect</code>/<code>actual</code>.</p>
+            <p>В общем коде вы объявляете <code>expect</code>-сущность — это контракт, «обещание», что реализация будет предоставлена на каждой платформе. А в платформенных исходниках пишете <code>actual</code>-реализацию.</p>
+            <pre><code>// commonMain — общий код для всех платформ
+expect fun platformName(): String
+
+class Greeting {
+    fun greet(): String = "Привет с ${platformName()}!"
+}
+
+// androidMain — реализация для Android
+actual fun platformName(): String =
+    "Android ${android.os.Build.VERSION.SDK_INT}"
+
+// iosMain — реализация для iOS
+import platform.UIKit.UIDevice
+
+actual fun platformName(): String =
+    UIDevice.currentDevice.systemName() +
+        " " + UIDevice.currentDevice.systemVersion</code></pre>
+            <p>Компилятор гарантирует, что для каждого <code>expect</code> найдётся <code>actual</code> на всех целевых платформах, иначе сборка не пройдёт. Механизм работает не только с функциями, но и с классами, объектами и свойствами.</p>
+            <p>На практике <code>expect</code>/<code>actual</code> используют реже, чем можно подумать. Чаще обращение к платформенным возможностям прячут за интерфейсом в общем коде, а реализацию передают снаружи через внедрение зависимостей. Но понимать сам механизм важно — это фундамент, на котором стоит весь KMP.</p>
+
+            <h2 id="vs-flutter-rn">Чем KMP отличается от Flutter и React Native</h2>
+            <p>И Flutter, и React Native, и KMP решают задачу переиспользования кода между iOS и Android, но делают это принципиально по-разному. Главное отличие — отношение к интерфейсу.</p>
+            <p>Flutter рисует интерфейс собственным движком Skia/Impeller, не используя нативные виджеты; React Native управляет нативными компонентами через JavaScript-мост. В обоих случаях <b>UI общий</b> — вы пишете его один раз. KMP же UI <b>не объединяет</b>: интерфейс остаётся полностью нативным, общей делается только логика.</p>
+            <table>
+              <thead>
+                <tr><th>Критерий</th><th>Kotlin Multiplatform</th><th>Flutter</th><th>React Native</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Язык</td><td>Kotlin</td><td>Dart</td><td>JavaScript / TypeScript</td></tr>
+                <tr><td>Что общее</td><td>Логика (UI нативный)</td><td>Логика и UI</td><td>Логика и UI</td></tr>
+                <tr><td>UI на платформе</td><td>SwiftUI / Compose</td><td>Свой движок отрисовки</td><td>Нативные компоненты через мост</td></tr>
+                <tr><td>Внешний вид</td><td>Полностью нативный</td><td>Свой, единый на платформах</td><td>Близкий к нативному</td></tr>
+                <tr><td>Интеграция в существующий проект</td><td>Очень гибкая, по слоям</td><td>Обычно «всё или ничего»</td><td>Возможна, но сложнее</td></tr>
+              </tbody>
+            </table>
+            <p>Из этой разницы вытекает и разное позиционирование. Flutter и React Native выгодны, когда нужно быстро выпустить приложение с единым дизайном на обе платформы силами одной команды. KMP выгоден, когда важны нативный вид и максимальная интеграция с платформой, а сэкономить хочется именно на дублировании логики. KMP проще «подселить» в уже существующие нативные приложения, не переписывая интерфейс.</p>
+
+            <h2 id="who-fits">Кому подходит, а кому нет</h2>
+            <p>KMP — не универсальный ответ. Он хорошо ложится на одни ситуации и плохо на другие.</p>
+            <p><b>Подходит, если:</b></p>
+            <ul>
+              <li>у вас уже есть нативные приложения на iOS и Android, и вы хотите убрать дублирование логики, не переписывая UI;</li>
+              <li>важен полностью нативный внешний вид и тесная интеграция с платформенными возможностями;</li>
+              <li>в команде есть Kotlin-разработчики, и логика приложения объёмная и сложная;</li>
+              <li>вы хотите внедрять кроссплатформенность постепенно, слой за слоем, без больших рисков.</li>
+            </ul>
+            <p><b>Стоит подумать дважды, если:</b></p>
+            <ul>
+              <li>нужен единый дизайн на обеих платформах и максимальная скорость вывода MVP — тут Flutter может оказаться быстрее;</li>
+              <li>в команде нет Kotlin-компетенции, а интерфейс — почти всё приложение (логики мало);</li>
+              <li>проект небольшой и состоит в основном из экранов, где общей логики просто немного и экономить не на чем.</li>
+            </ul>
+            <p>Стоит учитывать и зрелость инструментов. Поддержка iOS-таргета и интеграция с экосистемой Apple развиваются быстро, но всё ещё требуют от команды понимания обеих платформ. KMP не избавляет от необходимости знать iOS — он избавляет от необходимости дублировать логику.</p>
+          </div>
+        </div>
+        <div class="article__foot">
+          <div class="takeaways reveal"><h2>Коротко</h2><ul>
+            <li>KMP компилирует Kotlin под несколько платформ из одной кодовой базы; технология стабильна и официально поддержана Google для Android-логики.</li>
+            <li>Принцип «общая логика — нативный UI»: шарят бизнес-логику, сеть, модели и хранение, а интерфейс пишут на SwiftUI и Jetpack Compose.</li>
+            <li>Механизм expect/actual позволяет из общего кода обращаться к платформозависимым реализациям, и компилятор следит, чтобы они были на всех целях.</li>
+            <li>В отличие от Flutter и React Native, KMP не делает UI общим — это его ключевое отличие и главное преимущество для нативного вида.</li>
+            <li>KMP выгоден командам с готовыми нативными приложениями и объёмной логикой; для быстрого MVP с единым дизайном чаще лучше Flutter.</li>
+          </ul></div>
+          <p class="related__title">Читайте также</p>
+          <div class="related">
+            <article class="related__card reveal"><span class="cat">Android</span><h3><a href="kotlin-compose.html">Kotlin и Jetpack Compose: современный Android</a></h3></article>
+            <article class="related__card reveal"><span class="cat">Кроссплатформа</span><h3><a href="flutter-vs-react-native.html">Flutter или React Native: что выбрать в 2026</a></h3></article>
+            <article class="related__card reveal"><span class="cat">iOS</span><h3><a href="swiftui-basics.html">SwiftUI простыми словами: как устроены экраны</a></h3></article>
+          </div>
+          <div class="article__cta reveal"><div><h2>Остались вопросы?</h2><p>Предложите тему или задайте вопрос редакции MYXDA — мы читаем все письма.</p></div><a class="btn btn--primary btn--lg" href="../index.html#contact">Связаться с редакцией</a></div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <div class="foot__brand">
+        <a class="logo" href="../index.html" aria-label="MYXDA">
+          <span class="logo__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="url(#lg2)" stroke-width="1.6"/>
+              <text x="12" y="14.5" font-family="monospace" font-size="7" font-weight="700" fill="url(#lg2)" text-anchor="middle">{}</text>
+              <defs><linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#19e3d6"/></linearGradient></defs>
+            </svg>
+          </span>
+          <span class="logo__txt">MYXDA<small>mobile&nbsp;dev</small></span>
+        </a>
+        <p class="foot__about">Информационный журнал-энциклопедия о мобильной разработке. Платформы, языки, инструменты и этапы создания приложений — простым языком.</p>
+      </div>
+      <nav class="foot__col" aria-label="Разделы">
+        <h3>Разделы</h3>
+        <a href="../index.html#platforms">Платформы</a>
+        <a href="../index.html#stack">Технологии</a>
+        <a href="../index.html#dirs">Направления</a>
+        <a href="../index.html#stages">Этапы</a>
+      </nav>
+      <nav class="foot__col" aria-label="Материалы">
+        <h3>Материалы</h3>
+        <a href="../index.html#versus">iOS vs Android</a>
+        <a href="../index.html#articles">Статьи</a>
+        <a href="../index.html#faq">FAQ</a>
+        <a href="../index.html#contact">Связаться</a>
+      </nav>
+      <div class="foot__col foot__contacts">
+        <h3>Контакты</h3>
+        <p><a href="mailto:ХХХХХ">ХХХХХ</a></p>
+        <p><a href="tel:ХХХХХ">ХХХХХ</a></p>
+        <p>Telegram: ХХХХХ</p>
+        <p>Адрес: ХХХХХ</p>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <div class="wrap foot__bottom-in">
+        <span>© <span id="year">2026</span> MYXDA. Информационный проект о мобильной разработке.</span>
+        <span>Все контактные данные на сайте — заглушки (ХХХХХ).</span>
+      </div>
+    </div>
+  </footer>
+  <button class="totop" id="toTop" aria-label="Наверх" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

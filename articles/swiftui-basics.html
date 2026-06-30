@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+  <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwiftUI простыми словами: как устроены экраны — MYXDA</title>
+  <meta name="description" content="Разбираем SwiftUI без жаргона: что такое View, чем декларативный подход отличается от UIKit, как работает состояние (@State, @Binding) и почему экран перерисовывается сам." />
+  <meta name="theme-color" content="#0a0a14" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="SwiftUI простыми словами: как устроены экраны" />
+  <meta property="og:description" content="Разбираем SwiftUI без жаргона: что такое View, чем декларативный подход отличается от UIKit, как работает состояние (@State, @Binding) и почему экран перерисовывается сам." />
+  <meta property="og:locale" content="ru_RU" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/article.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"SwiftUI простыми словами: как устроены экраны","description":"Разбираем SwiftUI без жаргона: что такое View, чем декларативный подход отличается от UIKit, как работает состояние (@State, @Binding) и почему экран перерисовывается сам.","inLanguage":"ru-RU","author":{"@type":"Organization","name":"Редакция MYXDA"},"publisher":{"@type":"Organization","name":"MYXDA","email":"ХХХХХ","telephone":"ХХХХХ"},"datePublished":"2026-02-01"}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="hdr" id="hdr">
+    <div class="wrap hdr__in">
+      <a class="logo" href="../index.html" aria-label="MYXDA — на главную">
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="url(#lg)" stroke-width="1.6"/>
+            <text x="12" y="14.5" font-family="monospace" font-size="7" font-weight="700" fill="url(#lg)" text-anchor="middle">{}</text>
+            <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#19e3d6"/></linearGradient></defs>
+          </svg>
+        </span>
+        <span class="logo__txt">MYXDA<small>mobile&nbsp;dev</small></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <a class="nav__link" href="../index.html#platforms">Платформы</a>
+        <a class="nav__link" href="../index.html#stack">Стек</a>
+        <a class="nav__link" href="../index.html#dirs">Направления</a>
+        <a class="nav__link" href="../index.html#stages">Этапы</a>
+        <a class="nav__link" href="../index.html#versus">iOS vs Android</a>
+        <a class="nav__link" href="../index.html#articles">Статьи</a>
+        <a class="nav__link" href="../index.html#faq">FAQ</a>
+        <a class="btn btn--primary nav__cta" href="../index.html#contact">Связаться</a>
+      </nav>
+      <div class="hdr__actions">
+        <a class="btn btn--primary hdr__cta" href="../index.html#contact">Связаться с редакцией</a>
+        <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <article class="article">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Хлебные крошки"><a href="../index.html">Главная</a><span aria-hidden="true">›</span><a href="../index.html#articles">Статьи</a><span aria-hidden="true">›</span><span class="crumbs__cur" aria-current="page">SwiftUI: как устроены экраны</span></nav>
+        <header class="article__head reveal">
+          <span class="article__cat">iOS</span>
+          <h1 class="article__title">SwiftUI простыми словами: как устроены экраны</h1>
+          <div class="article__meta"><span><b>9 мин</b> чтения</span><span>Категория: <b>iOS</b></span><span>Редакция MYXDA</span></div>
+          <p class="article__lead">SwiftUI перевернул привычный способ собирать интерфейсы на iOS: теперь вы описываете, как экран должен выглядеть, а не вручную меняете кнопки и метки. Разбираемся, что такое View, как работает состояние и почему интерфейс перерисовывается сам.</p>
+        </header>
+        <div class="article__grid">
+          <aside class="toc reveal" aria-label="Содержание статьи">
+            <p class="toc__title">Содержание</p>
+            <ol>
+              <li><a href="#what-is">Что такое SwiftUI и чем отличается от UIKit</a></li>
+              <li><a href="#declarative">Декларативный подход: что такое View</a></li>
+              <li><a href="#state">Состояние интерфейса: почему экран перерисовывается сам</a></li>
+              <li><a href="#composition">Композиция и модификаторы</a></li>
+              <li><a href="#counter">Небольшой пример: экран-счётчик</a></li>
+              <li><a href="#when">Когда SwiftUI, а когда ещё UIKit</a></li>
+            </ol>
+          </aside>
+          <div class="prose reveal">
+            <p>Если вы только начинаете с iOS-разработки, SwiftUI кажется одновременно простым и загадочным. Кода мало, экраны собираются быстро, но непонятно, что происходит «под капотом»: откуда берётся реакция на нажатия, почему текст меняется сам и зачем нужны все эти значки <code>@</code> перед переменными. В этой статье мы разложим устройство экранов SwiftUI на понятные части — без академических формулировок, но и без упрощений, которые потом придётся переучивать.</p>
+            <p>SwiftUI — это фреймворк Apple для построения интерфейсов, представленный в 2019 году. Он работает на Swift и охватывает все платформы Apple: iOS, iPadOS, macOS, watchOS и tvOS. Главная идея — описывать интерфейс декларативно, и именно с неё мы начнём.</p>
+
+            <h2 id="what-is">Что такое SwiftUI и чем отличается от UIKit</h2>
+            <p>До SwiftUI основным инструментом для iOS был <b>UIKit</b> — императивный фреймворк, который существует с 2008 года и до сих пор лежит в основе огромного числа приложений. В UIKit вы создаёте объекты интерфейса (кнопки, метки, таблицы) и затем вручную, шаг за шагом, меняете их свойства: «возьми эту метку и присвой ей новый текст», «спрячь эту кнопку», «перезагрузи таблицу». Вы отвечаете за каждое изменение состояния экрана.</p>
+            <p>SwiftUI устроен иначе. Вы не отдаёте команды «измени то, спрячь это». Вместо этого вы описываете, как экран должен выглядеть при определённых данных, а фреймворк сам решает, что и когда обновить. Разницу удобно свести в таблицу.</p>
+            <table>
+              <thead>
+                <tr><th>Свойство</th><th>UIKit</th><th>SwiftUI</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Подход</td><td>Императивный: «как делать»</td><td>Декларативный: «что должно быть»</td></tr>
+                <tr><td>Год появления</td><td>2008</td><td>2019</td></tr>
+                <tr><td>Обновление UI</td><td>Вручную меняете свойства</td><td>Перерисовка по изменению состояния</td></tr>
+                <tr><td>Объём кода</td><td>Больше шаблонного кода</td><td>Компактнее, меньше связующего кода</td></tr>
+                <tr><td>Превью в Xcode</td><td>Нет нативного живого превью</td><td>Живое превью прямо в редакторе</td></tr>
+                <tr><td>Зрелость</td><td>Очень зрелый, полный набор API</td><td>Активно развивается, часть API ещё догоняет</td></tr>
+              </tbody>
+            </table>
+            <p>Важно понимать: SwiftUI не «заменил» UIKit полностью. Под капотом многие компоненты SwiftUI по-прежнему опираются на UIKit, и оба фреймворка спокойно работают вместе в одном проекте. Но для новых экранов SwiftUI почти всегда даёт более короткий и читаемый код.</p>
+
+            <h2 id="declarative">Декларативный подход: что такое View</h2>
+            <p>Базовый кирпичик SwiftUI — это <b>View</b> (вью, «представление»). В терминах кода View — это структура, которая соответствует протоколу <code>View</code> и обязана иметь свойство <code>body</code>. В <code>body</code> вы и описываете, как этот фрагмент интерфейса выглядит.</p>
+            <pre><code>struct GreetingView: View {
+    var body: some View {
+        Text("Привет, мир")
+    }
+}</code></pre>
+            <p>Здесь <code>GreetingView</code> — наш собственный View, а внутри он возвращает <code>Text</code> — встроенный View для отображения строки. Тип <code>some View</code> означает «какой-то конкретный View, тип которого выведет компилятор» — вам не нужно прописывать его вручную.</p>
+            <p>Ключевая мысль декларативного подхода: <b>body — это функция от данных</b>. Вы не описываете последовательность действий во времени. Вы описываете соответствие: «при таких-то данных экран выглядит так-то». Когда данные меняются, SwiftUI заново вычисляет <code>body</code> и обновляет на экране только то, что действительно изменилось. Вам не нужно искать конкретную метку и присваивать ей новый текст — достаточно изменить данные.</p>
+            <aside class="callout"><span class="callout__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8h.01M11 12h1v4h1"/><circle cx="12" cy="12" r="9"/></svg></span><p><b>Совет.</b> View в SwiftUI — это лёгкие структуры (struct), а не тяжёлые объекты-классы. Их дёшево создавать и пересоздавать. Не бойтесь, что body вычисляется часто: SwiftUI сравнивает результат и перерисовывает лишь изменившиеся части.</p></aside>
+
+            <h2 id="state">Состояние интерфейса: почему экран перерисовывается сам</h2>
+            <p>Если body — это функция от данных, то главный вопрос: где живут эти данные и как SwiftUI узнаёт, что они изменились? За это отвечает <b>состояние</b> (state) и набор специальных оберток-свойств (property wrappers), которые помечаются значком <code>@</code>.</p>
+
+            <h3>@State — локальное состояние View</h3>
+            <p><code>@State</code> хранит данные, которые принадлежат конкретному View и могут меняться со временем: введённый текст, переключатель, счётчик. Когда значение <code>@State</code> меняется, SwiftUI автоматически пересчитывает <code>body</code> этого View и обновляет экран.</p>
+            <pre><code>struct ToggleView: View {
+    @State private var isOn = false
+
+    var body: some View {
+        Toggle("Уведомления", isOn: $isOn)
+    }
+}</code></pre>
+            <p>Обратите внимание на <code>$isOn</code> со знаком доллара. Это не само значение, а <b>binding</b> — двусторонняя «привязка» к нему. Через binding <code>Toggle</code> может не только читать значение, но и записывать его обратно, когда пользователь щёлкает переключателем.</p>
+
+            <h3>@Binding — общая ссылка на чужое состояние</h3>
+            <p>Когда вы выносите часть интерфейса в отдельный дочерний View, ему часто нужно менять состояние, которое объявлено выше, в родительском View. Для этого служит <code>@Binding</code>: дочерний View не владеет данными, а получает ссылку на них.</p>
+            <pre><code>struct ChildToggle: View {
+    @Binding var isOn: Bool
+
+    var body: some View {
+        Toggle("Звук", isOn: $isOn)
+    }
+}
+
+struct ParentView: View {
+    @State private var soundOn = true
+
+    var body: some View {
+        ChildToggle(isOn: $soundOn)
+    }
+}</code></pre>
+            <p>Родитель владеет данными через <code>@State</code> и передаёт их вниз как <code>$soundOn</code>. Дочерний View принимает их в <code>@Binding</code>. Меняя значение, ребёнок фактически меняет состояние родителя — и оба перерисовываются согласованно.</p>
+
+            <h3>Единый источник истины</h3>
+            <p>Это подводит нас к принципу, на котором держится весь SwiftUI, — <b>единый источник истины</b> (single source of truth). Каждый кусочек изменяемых данных должен иметь ровно одного владельца. Все остальные части интерфейса не копируют эти данные, а ссылаются на них через binding. Тогда не возникает рассинхронизации: невозможна ситуация, когда переключатель показывает «выкл», а реальная настройка хранит «вкл».</p>
+            <p>Именно поэтому интерфейс «сам» перерисовывается. SwiftUI отслеживает, какие View прочитали то или иное состояние. Как только источник истины меняется, фреймворк пересчитывает <code>body</code> у всех зависимых View и аккуратно обновляет экран. Вам не нужно вручную ни синхронизировать данные, ни вызывать «обнови интерфейс».</p>
+            <aside class="callout"><span class="callout__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8h.01M11 12h1v4h1"/><circle cx="12" cy="12" r="9"/></svg></span><p><b>Совет.</b> <code>@State</code> и <code>@Binding</code> хороши для простого состояния внутри пары экранов. Для данных, которые живут дольше и используются во многих местах (модель приложения, загруженный список), есть отдельные инструменты — <code>@Observable</code>-классы, <code>@StateObject</code> и <code>@EnvironmentObject</code>. Принцип единого источника истины при этом остаётся тем же.</p></aside>
+
+            <h2 id="composition">Композиция и модификаторы</h2>
+            <p>Экраны в SwiftUI собираются из мелких View, вложенных друг в друга, — это называется <b>композицией</b>. Для расположения элементов используются контейнеры-стопки:</p>
+            <ul>
+              <li><code>VStack</code> — выстраивает дочерние элементы вертикально, один под другим;</li>
+              <li><code>HStack</code> — выстраивает их горизонтально, в ряд;</li>
+              <li><code>ZStack</code> — накладывает элементы друг на друга по глубине.</li>
+            </ul>
+            <p>Внешний вид каждого View настраивается <b>модификаторами</b> (modifiers) — это методы, которые вызываются через точку и возвращают новый, изменённый View. Их можно выстраивать в цепочку:</p>
+            <pre><code>Text("Заголовок")
+    .font(.title)
+    .foregroundStyle(.primary)
+    .padding()</code></pre>
+            <p>Порядок модификаторов важен: каждый из них «оборачивает» предыдущий результат. Например, <code>.padding().background(.gray)</code> и <code>.background(.gray).padding()</code> дадут разный вид, потому что в первом случае серый фон захватит отступы, а во втором — нет. Это прямое следствие того, что модификатор не меняет View на месте, а создаёт обёртку поверх него.</p>
+
+            <h2 id="counter">Небольшой пример: экран-счётчик</h2>
+            <p>Соберём всё вместе на классическом примере — экране со счётчиком. Здесь есть локальное состояние (<code>@State</code>), реакция на нажатия, композиция из стопок и модификаторы.</p>
+            <pre><code>import SwiftUI
+
+struct CounterView: View {
+    @State private var count = 0
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Text("Счётчик")
+                .font(.headline)
+
+            Text("\(count)")
+                .font(.system(size: 64, weight: .bold))
+
+            HStack(spacing: 16) {
+                Button("−") {
+                    count -= 1
+                }
+                Button("+") {
+                    count += 1
+                }
+            }
+            .font(.title)
+
+            Button("Сбросить") {
+                count = 0
+            }
+            .foregroundStyle(.red)
+        }
+        .padding()
+    }
+}
+
+#Preview {
+    CounterView()
+}</code></pre>
+            <p>Разберём, что здесь происходит. Состояние <code>count</code> объявлено через <code>@State</code> — это единственный источник истины об экране. <code>VStack</code> вертикально размещает заголовок, крупное число и блок кнопок. Внутри <code>HStack</code> две кнопки «минус» и «плюс» стоят в ряд. Каждая кнопка в своём замыкании просто меняет <code>count</code>.</p>
+            <p>И ничего больше. Мы нигде не говорим «обнови текст числа». Как только <code>count</code> меняется, SwiftUI пересчитывает <code>body</code> и обновляет на экране ту самую <code>Text("\(count)")</code>. Строка <code>#Preview</code> в конце включает живое превью прямо в Xcode — это <code>macro</code> SwiftUI, позволяющий видеть экран без запуска приложения на устройстве.</p>
+
+            <h2 id="when">Когда SwiftUI, а когда ещё UIKit</h2>
+            <p>SwiftUI — разумный выбор по умолчанию для новых проектов и экранов. Он короче, его проще читать, а живое превью заметно ускоряет работу. Но есть ситуации, где UIKit пока остаётся практичнее.</p>
+            <ul>
+              <li><b>Берите SwiftUI</b>, если начинаете новый проект, делаете типовые экраны (списки, формы, настройки, карточки) и хотите быстро видеть результат.</li>
+              <li><b>Оставьте UIKit</b>, если поддерживаете большое существующее приложение целиком на UIKit, нуждаетесь в тонком контроле над сложными анимациями и жестами либо используете компонент, точного аналога которому в SwiftUI ещё нет.</li>
+              <li><b>Смешивайте оба</b>: SwiftUI и UIKit рассчитаны на совместную работу. Готовый UIKit-экран можно встроить в SwiftUI через <code>UIViewControllerRepresentable</code>, а SwiftUI-View поместить в UIKit через <code>UIHostingController</code>.</li>
+            </ul>
+            <p>На практике многие команды постепенно переводят приложения на SwiftUI, начиная с новых экранов и оставляя сложные старые на UIKit. Знание обоих фреймворков сегодня — норма для iOS-разработчика, но если вы только учитесь, начинать стоит именно со SwiftUI: вход в него заметно мягче.</p>
+          </div>
+        </div>
+        <div class="article__foot">
+          <div class="takeaways reveal"><h2>Коротко</h2><ul>
+            <li>SwiftUI — декларативный фреймворк: вы описываете, как экран выглядит при данных, а не отдаёте команды «измени это».</li>
+            <li>Базовый кирпичик — View со свойством <code>body</code>; экраны собираются композицией из мелких View и стопок (<code>VStack</code>, <code>HStack</code>, <code>ZStack</code>).</li>
+            <li>Состояние хранится в <code>@State</code>, передаётся вниз через <code>@Binding</code>; принцип единого источника истины не даёт данным рассинхронизироваться.</li>
+            <li>Интерфейс перерисовывается сам: при изменении состояния SwiftUI пересчитывает <code>body</code> и обновляет только то, что изменилось.</li>
+            <li>SwiftUI — выбор по умолчанию для нового кода, но UIKit ещё актуален и легко сочетается со SwiftUI в одном проекте.</li>
+          </ul></div>
+          <p class="related__title">Читайте также</p>
+          <div class="related">
+            <article class="related__card reveal"><span class="cat">Android</span><h3><a href="kotlin-compose.html">Kotlin и Jetpack Compose: современный Android</a></h3></article>
+            <article class="related__card reveal"><span class="cat">Карьера</span><h3><a href="start-mobile-dev.html">С чего начать обучение мобильной разработке</a></h3></article>
+            <article class="related__card reveal"><span class="cat">Кроссплатформа</span><h3><a href="kotlin-multiplatform.html">Kotlin Multiplatform: один код, две платформы</a></h3></article>
+          </div>
+          <div class="article__cta reveal"><div><h2>Остались вопросы?</h2><p>Предложите тему или задайте вопрос редакции MYXDA — мы читаем все письма.</p></div><a class="btn btn--primary btn--lg" href="../index.html#contact">Связаться с редакцией</a></div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <div class="foot__brand">
+        <a class="logo" href="../index.html" aria-label="MYXDA">
+          <span class="logo__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="url(#lg2)" stroke-width="1.6"/>
+              <text x="12" y="14.5" font-family="monospace" font-size="7" font-weight="700" fill="url(#lg2)" text-anchor="middle">{}</text>
+              <defs><linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#19e3d6"/></linearGradient></defs>
+            </svg>
+          </span>
+          <span class="logo__txt">MYXDA<small>mobile&nbsp;dev</small></span>
+        </a>
+        <p class="foot__about">Информационный журнал-энциклопедия о мобильной разработке. Платформы, языки, инструменты и этапы создания приложений — простым языком.</p>
+      </div>
+      <nav class="foot__col" aria-label="Разделы">
+        <h3>Разделы</h3>
+        <a href="../index.html#platforms">Платформы</a>
+        <a href="../index.html#stack">Технологии</a>
+        <a href="../index.html#dirs">Направления</a>
+        <a href="../index.html#stages">Этапы</a>
+      </nav>
+      <nav class="foot__col" aria-label="Материалы">
+        <h3>Материалы</h3>
+        <a href="../index.html#versus">iOS vs Android</a>
+        <a href="../index.html#articles">Статьи</a>
+        <a href="../index.html#faq">FAQ</a>
+        <a href="../index.html#contact">Связаться</a>
+      </nav>
+      <div class="foot__col foot__contacts">
+        <h3>Контакты</h3>
+        <p><a href="mailto:ХХХХХ">ХХХХХ</a></p>
+        <p><a href="tel:ХХХХХ">ХХХХХ</a></p>
+        <p>Telegram: ХХХХХ</p>
+        <p>Адрес: ХХХХХ</p>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <div class="wrap foot__bottom-in">
+        <span>© <span id="year">2026</span> MYXDA. Информационный проект о мобильной разработке.</span>
+        <span>Все контактные данные на сайте — заглушки (ХХХХХ).</span>
+      </div>
+    </div>
+  </footer>
+  <button class="totop" id="toTop" aria-label="Наверх" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

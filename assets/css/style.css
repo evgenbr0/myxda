@@ -429,3 +429,10 @@ textarea.field__input { resize: vertical; min-height: 110px; }
   .hero__facts { gap: 1.2rem; }
   .contact__info, .form, .plat__card, .vs-col { padding: 1.4rem; }
 }
+
+/* ---------- Карточки статей кликабельны целиком (ведут на страницу статьи) ---------- */
+.art { position: relative; }
+.art h3 { transition: color .2s var(--ease); }
+.art:hover h3 { color: var(--cyan-2); }
+.art__more { position: relative; z-index: 1; }
+.art__more::after { content: ""; position: absolute; inset: 0; border-radius: var(--r); }
